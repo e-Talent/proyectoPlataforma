@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:dataTable value="#{listadoAlumnos.lista}" var="alumno">
+            <h:column>              
+                <f:facet name="header">Nombre</f:facet> 
+                    #{alumno.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                    #{alumno.apellidos}
+            </h:column>    
+            <h:column>
+                <f:facet name="header">Rol</f:facet>
+                    #{alumno.rol}
+            </h:column>              
+        </h:dataTable>         
+        <h:dataTable value="#{listadoAlumnos.listaMatriculas}" var="matricula">
+            <h:column>              
+                <f:facet name="header">Matricula</f:facet> 
+                    #{matricula.idImparticion.idCurso.descripcion}
+            </h:column>            
+        </h:dataTable> 
+    </h:body>
+</html>
+
