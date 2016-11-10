@@ -1,10 +1,16 @@
 package modelo.DAO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import persistencia.Curso;
 import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -60,4 +66,24 @@ public class ControladorDAO implements InterfazDAO {
         return resultado;
     }
 
+//La fecha de fin debe ser menor a la de hoy
+    @Override
+    public List<Imparticion> imparticionesActivas() {
+        Query query = em.createNamedQuery("Imparticion.findAll");
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaActual = null;
+        try {
+            fechaActual = sd.parse(sd.format(new Date()));
+        } catch (ParseException ex) {
+            ex.getMessage();
+        }
+        List<Imparticion> aux = query.getResultList();
+        List<Imparticion> lista = new ArrayList<>();
+        for (Imparticion imparticion : aux) {
+            if (imparticion.getFechaFin().compareTo(fechaActual) > 0) {
+                lista.add(imparticion);
+            }
+        }
+        return lista;
+    }
 }

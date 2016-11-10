@@ -20,4 +20,6 @@ public interface InterfazDAO {
     
     public Usuario login(String usuario, String password);
 
+    public List<Imparticion> imparticionesActivas();
+    
 }
