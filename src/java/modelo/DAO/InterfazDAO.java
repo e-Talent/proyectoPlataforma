@@ -17,5 +17,7 @@ public interface InterfazDAO {
     public List<Imparticion> listarImparticiones();
 
     public List<Matricula> listarMatriculas();
+    
+    public Usuario login(String usuario, String password);
 
 }

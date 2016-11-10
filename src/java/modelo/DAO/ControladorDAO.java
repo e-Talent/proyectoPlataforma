@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ControladorDAO implements InterfazDAO {
 
     @PersistenceContext(name = "Proyecto_PlataformaPU")
-    EntityManager em;  
-  
+    EntityManager em;
+
     @Transactional()
     @Override
     public void persist(Object object) {
@@ -49,6 +49,15 @@ public class ControladorDAO implements InterfazDAO {
         Query query = em.createNamedQuery("Matricula.findAll");
         List<Matricula> lista = query.getResultList();
         return lista;
+    }
+
+    @Override
+    public Usuario login(String usuario, String password) {
+        Query query = em.createNamedQuery("Usuario.login");
+        query.setParameter("usuario", usuario);
+        query.setParameter("password", password);
+        Usuario resultado = (Usuario) query.getSingleResult();
+        return resultado;
     }
 
 }

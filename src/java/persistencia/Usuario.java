@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Mañana
  */
 @Entity
-@Table(name = "usuario")
-@XmlRootElement
-@NamedQueries({
+        @Table(name = "usuario")
+        @XmlRootElement
+        @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByDni", query = "SELECT u FROM Usuario u WHERE u.dni = :dni"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password"),
     @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
     @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
-    @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol")})
+    @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
+    @NamedQuery(name = "Usuario.login", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password")})
+
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -192,5 +194,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "DAO.Usuario[ dni=" + dni + " ]";
     }
-    
+
 }
