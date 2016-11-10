@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package persistencia;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -24,51 +24,39 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Mañana
  */
 @Entity
-@Table(name = "matricula")
+@Table(name = "examen")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Matricula.findAll", query = "SELECT m FROM Matricula m"),
-    @NamedQuery(name = "Matricula.findByIdMatricula", query = "SELECT m FROM Matricula m WHERE m.idMatricula = :idMatricula"),
-    @NamedQuery(name = "Matricula.findByNota", query = "SELECT m FROM Matricula m WHERE m.nota = :nota")})
-public class Matricula implements Serializable {
+    @NamedQuery(name = "Examen.findAll", query = "SELECT e FROM Examen e"),
+    @NamedQuery(name = "Examen.findByIdExamen", query = "SELECT e FROM Examen e WHERE e.idExamen = :idExamen")})
+public class Examen implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idMatricula")
-    private Integer idMatricula;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "nota")
-    private Double nota;
+    @Column(name = "idExamen")
+    private Integer idExamen;
     @JoinColumn(name = "idImparticion", referencedColumnName = "idImparticion")
     @ManyToOne(optional = false)
     private Imparticion idImparticion;
-    @JoinColumn(name = "dni", referencedColumnName = "dni")
+    @JoinColumn(name = "idPregunta", referencedColumnName = "idPregunta")
     @ManyToOne(optional = false)
-    private Usuario dni;
+    private Pregunta idPregunta;
 
-    public Matricula() {
+    public Examen() {
     }
 
-    public Matricula(Integer idMatricula) {
-        this.idMatricula = idMatricula;
+    public Examen(Integer idExamen) {
+        this.idExamen = idExamen;
     }
 
-    public Integer getIdMatricula() {
-        return idMatricula;
+    public Integer getIdExamen() {
+        return idExamen;
     }
 
-    public void setIdMatricula(Integer idMatricula) {
-        this.idMatricula = idMatricula;
-    }
-
-    public Double getNota() {
-        return nota;
-    }
-
-    public void setNota(Double nota) {
-        this.nota = nota;
+    public void setIdExamen(Integer idExamen) {
+        this.idExamen = idExamen;
     }
 
     public Imparticion getIdImparticion() {
@@ -79,29 +67,29 @@ public class Matricula implements Serializable {
         this.idImparticion = idImparticion;
     }
 
-    public Usuario getDni() {
-        return dni;
+    public Pregunta getIdPregunta() {
+        return idPregunta;
     }
 
-    public void setDni(Usuario dni) {
-        this.dni = dni;
+    public void setIdPregunta(Pregunta idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMatricula != null ? idMatricula.hashCode() : 0);
+        hash += (idExamen != null ? idExamen.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Matricula)) {
+        if (!(object instanceof Examen)) {
             return false;
         }
-        Matricula other = (Matricula) object;
-        if ((this.idMatricula == null && other.idMatricula != null) || (this.idMatricula != null && !this.idMatricula.equals(other.idMatricula))) {
+        Examen other = (Examen) object;
+        if ((this.idExamen == null && other.idExamen != null) || (this.idExamen != null && !this.idExamen.equals(other.idExamen))) {
             return false;
         }
         return true;
@@ -109,7 +97,7 @@ public class Matricula implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Matricula[ idMatricula=" + idMatricula + " ]";
+        return "DAO.Examen[ idExamen=" + idExamen + " ]";
     }
     
 }

@@ -6,26 +6,25 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <h:dataTable value="#{listadoAlumnos.lista}" var="alumno">
-            <h:column>              
-                <f:facet name="header">Nombre</f:facet> 
-                    #{alumno.nombre}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Apellidos</f:facet>
-                    #{alumno.apellidos}
-            </h:column>    
-            <h:column>
-                <f:facet name="header">Rol</f:facet>
-                    #{alumno.rol}
-            </h:column>              
-        </h:dataTable>         
+    <h:body>     
         <h:dataTable value="#{listadoAlumnos.listaMatriculas}" var="matricula">
             <h:column>              
-                <f:facet name="header">Matricula</f:facet> 
-                    #{matricula.idImparticion.idCurso.descripcion}
-            </h:column>            
+                <f:facet name="header">Curso</f:facet> 
+                    #{matricula.idImparticion.idCurso.nombre}
+            </h:column>    
+              <h:column>              
+                <f:facet name="header">Impartición</f:facet> 
+                    #{matricula.idImparticion.nombre}
+            </h:column>    
+               <h:column>              
+                <f:facet name="header">Alumno</f:facet> 
+                    #{matricula.dni.nombre}
+            </h:column> 
+              
+               <h:column>              
+                <f:facet name="header">Alumno</f:facet> 
+                    #{matricula.dni.apellidos}
+            </h:column> 
         </h:dataTable> 
     </h:body>
 </html>
