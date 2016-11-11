@@ -22,7 +22,11 @@
                 <p:menuitem value="6. Consulta de cursos activos" action="null" ajax="false"></p:menuitem>
             </p:menuButton>    
         </h:form>
-        <h:form> 
+        <h:form>
+            Introduzca el nombre del curso: <h:inputText value="#{listaCursos.nombre}"/> 
+            <h:commandButton value="Buscar" action="#{listaCursos.buscador()}"/>
+        </h:form>
+        <h:form rendered="false"> 
             <h:dataTable value="#{login.imparticionesActivas}" var="imparticion">
                 <h:column>              
                     <f:facet name="header">Curso</f:facet> 

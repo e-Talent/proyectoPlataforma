@@ -9,13 +9,12 @@ import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import persistencia.Examen;
 
 @Component(value = "cDAO")
 public class ControladorDAO implements InterfazDAO {
@@ -25,6 +24,7 @@ public class ControladorDAO implements InterfazDAO {
 
     @Transactional()
     @Override
+    //Guarda cualquier tipo de dato (objeto) en la bbdd.
     public void persist(Object object) {
         em.persist(object);
     }
@@ -66,7 +66,6 @@ public class ControladorDAO implements InterfazDAO {
         return resultado;
     }
 
-//La fecha de fin debe ser menor a la de hoy
     @Override
     public List<Imparticion> imparticionesActivas() {
         Query query = em.createNamedQuery("Imparticion.findAll");
@@ -86,4 +85,60 @@ public class ControladorDAO implements InterfazDAO {
         }
         return lista;
     }
+
+    @Override
+    public Curso buscarCursoID(int idCurso) {
+        // find es un método de jpa para buscar por la primary key objetos
+        Curso curso = em.find(Curso.class, idCurso);
+        return curso;
+    }
+
+    @Override
+    public Imparticion buscarImparticionID(int idImparticion) {
+        Imparticion i = em.find(Imparticion.class, idImparticion);
+        return i;
+    }
+
+    @Override
+    public Usuario buscarUsuarioDNI(String DNI) {
+        Usuario u = em.find(Usuario.class, DNI);
+        return u;
+    }
+
+    @Override
+    public List<Curso> listarCursosNombre(String nombre) {
+        Query query = em.createNamedQuery("Curso.findByNombre");
+        query.setParameter("nombre", "%" + nombre + "%");
+        List<Curso> lista = query.getResultList();
+        return lista;
+    }
+
+    @Override
+    public List<Matricula> imparticionesAlumno(String DNI) {
+        //Obtenemos una lista con todas las matrículas
+        Query query = em.createNamedQuery("Matricula.findAll");
+        List<Matricula> aux = query.getResultList();
+        List<Matricula> lista = new ArrayList<>();
+        //Buscamos las matrículas que coincidan con el alumno
+        for (Matricula m : aux) {
+            if (m.getDni().getDni().equals(DNI)) {
+                lista.add(m);
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Examen> cargarExamen(String idImparticion) {
+        Query query = em.createNamedQuery("Examen.findAll");
+        List<Examen> aux = query.getResultList();
+        List<Examen> lista = new ArrayList<>();
+        for (Examen e : aux) {
+            if (e.getIdImparticion().getIdImparticion()==Integer.parseInt(idImparticion)) {
+                lista.add(e);
+            }
+        }
+        return lista;
+    }
+
 }

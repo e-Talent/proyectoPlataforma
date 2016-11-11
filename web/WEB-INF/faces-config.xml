@@ -5,5 +5,12 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-    </application>   
+    </application>
+    <navigation-rule>
+        <from-view-id>/menuAlumno.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>examen</from-outcome>
+            <to-view-id>/examen.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import modelo.DAO.InterfazDAO;
 import persistencia.Imparticion;
+import persistencia.Matricula;
 import persistencia.Usuario;
 
 @ManagedBean
@@ -18,6 +19,7 @@ public class Login {
     private String password;
     private Usuario user;    
     private List<Imparticion> imparticionesActivas;
+    private List<Matricula> listaMatriculadas;
     
     public Login() {
     }
@@ -53,7 +55,23 @@ public class Login {
     public void setUser(Usuario user) {
         this.user = user;
     }
-               
+       
+        public List<Imparticion> getImparticionesActivas() {
+        return imparticionesActivas;
+    }
+
+    public void setImparticionesActivas(List<Imparticion> imparticionesActivas) {
+        this.imparticionesActivas = imparticionesActivas;
+    }
+
+    public List<Matricula> getListaMatriculadas() {
+        return listaMatriculadas;
+    }
+
+    public void setListaMatriculadas(List<Matricula> listaMatriculadas) {
+        this.listaMatriculadas = listaMatriculadas;
+    }
+    
     public String validacionLogin(){
         String ruta;
         user=iDAO.login(usuario, password);
@@ -62,19 +80,12 @@ public class Login {
             imparticionesActivas = iDAO.imparticionesActivas();
             ruta="menuAdmin";
             } else {
+            listaMatriculadas = iDAO.imparticionesAlumno(user.getDni());
             ruta="menuAlumno";            
             }            
         } else {
         ruta=null;
         }
         return ruta;
-    }
-
-    public List<Imparticion> getImparticionesActivas() {
-        return imparticionesActivas;
-    }
-
-    public void setImparticionesActivas(List<Imparticion> imparticionesActivas) {
-        this.imparticionesActivas = imparticionesActivas;
     }
 }

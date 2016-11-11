@@ -9,13 +9,13 @@
     </h:head>
     <h:body>
         <h:form enctype="multipart/form-data">
-            Nombre del curso:<h:inputText id="nombreCurso" value="" /><br/>
-            Descripción:<h:inputTextarea id="descripcion" value="" /><br/>            
+            Nombre del curso:<h:inputText id="nombreCurso" value="#{agregarCurso.nombre}" /><br/>
+            Descripción:<h:inputTextarea id="descripcion" value="#{agregarCurso.descripcion}" /><br/>            
 
             <p:growl id="messages" showDetail="true" /> 
             <p:fileUpload value="null" mode="simple"/> 
             <p:commandButton value="Subir" ajax="false" actionListener="#{vistaSubidaArchivo.upload}" disabled="true" />           
-            <h:commandButton value="Guardar" action="index" />
+            <h:commandButton value="Guardar" action="#{agregarCurso.guardarCurso()}" />
             <h:commandButton value="Crear impartición" action="index" />
             <br/><br/>
             <h:commandButton value="Generar examen" action="index" />

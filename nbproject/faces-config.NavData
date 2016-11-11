@@ -2,8 +2,17 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="listadoPrueba.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="bajaAlumno.xhtml" x="150" y="600" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="altaCurso.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="mostrarCursos.xhtml" x="460" y="618" zoom="true"/>
+        <Node id="menuAdmin.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="cursoAlumno.xhtml" x="650" y="138" zoom="true"/>
+        <Node id="imparticion.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="matricularAlumnos.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="examen.xhtml" x="333" y="208" zoom="true"/>
+        <Node id="menuAlumno.xhtml" x="365" y="140" zoom="true"/>
+        <Node id="consultaCursosActivos.xhtml" x="400" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

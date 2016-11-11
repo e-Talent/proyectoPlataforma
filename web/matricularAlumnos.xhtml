@@ -9,16 +9,16 @@
     </h:head>
     <h:body>
         <h:form>
-            Inserta D.N.I.:<h:inputText id="dni" value="00000000x" size="9"/><br/>
+            Inserta D.N.I.:<h:inputText id="dni" value="#{matricularAlumno.DNI}" size="9"/><br/>
             Selecciona un curso activo:
-            <h:selectOneMenu id="seleccionImparticion" value="">
+            <h:selectOneMenu id="seleccionImparticion" value="#{matricularAlumno.idImparticion}">
                 <f:selectItems value="#{imparticionesActivas.lista}"
                                var="imparticion"
                                itemValue="#{imparticion.idImparticion}"
                                itemLabel="#{imparticion.nombre}"/>
             </h:selectOneMenu><br/><br/>
 
-            <h:commandButton value="Matricular" action="index" />
+            <h:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" />
         </h:form>
     </h:body>
 </html>

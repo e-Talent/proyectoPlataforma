@@ -11,20 +11,20 @@
        
             <h:form>
                 Selecciona un curso:
-                 <h:selectOneMenu id="seleccionCurso" value="">
+                <h:selectOneMenu id="seleccionCurso" value="#{agregarImparticion.idCurso}">
                      <f:selectItems value="#{listaCursos.lista}"
                                    var="curso"
                                    itemValue="#{curso.idCurso}"
                                    itemLabel="#{curso.nombre}"/>
                 </h:selectOneMenu><br/><br/>
                  Elija fecha de inicio del curso:<p:outputLabel for="popup" value="Popup:" />
-                 <p:calendar id="popup" value="#{calendarView.date2}" />
+                 <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
                  
                  Elija fecha de finalización del curso:<p:outputLabel for="popup" value="Popup:" />
-                 <p:calendar id="popup2" value="#{calendarView.date2}" />
+                 <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
                  
-                 Nombre de la edición:<h:inputText id="nombreEdicion" value="Java 2ª edición" /><br/>
-                 <h:commandButton value="Guardar" action="index" />
+                 Nombre de la edición:<h:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
+                 <h:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" />
                  <br/><br/>                
              </h:form>        
     </h:body>

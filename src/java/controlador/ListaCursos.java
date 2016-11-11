@@ -11,13 +11,14 @@ import persistencia.Curso;
 
 @ManagedBean
 @RequestScoped
-public class listaCursos {
+public class ListaCursos {
 
     @ManagedProperty("#{cDAO}")   
     private InterfazDAO iDAO; 
     private List<Curso> lista;
+    private String nombre;
     
-    public listaCursos() {
+    public ListaCursos() {
     }
 
     public InterfazDAO getiDAO() {
@@ -35,9 +36,24 @@ public class listaCursos {
     public void setLista(List<Curso> lista) {
         this.lista = lista;
     }
-            
+       
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public String listarCursos () {
     lista=iDAO.listarCursos();
     return "imparticion";
     }
+    
+        public String buscador() {
+    lista = iDAO.listarCursosNombre(nombre);
+        return "mostrarCursos";
+    }
+
 }
