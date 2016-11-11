@@ -1,18 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
     </h:head>
     <h:body>
-        <h:outputText value="Iniciar Sesión"/>
-        <h:form>
-            Usuario:<h:inputText id="usuario" value="#{login.usuario}" /><br/>
-            Contraseña:<h:inputSecret  id="password" value="#{login.password}" /><br/>
-            <h:commandButton value="Entrar" action="#{login.validacionLogin()}" />
-            <br/><br/>
-            <h:outputText value=""/>
+
+        <h:form>          
+            <p:panel header="Iniciar Sesion">  
+                <h:panelGrid columns="2" cellpadding="5">               
+                    Usuario:<p:inputText id="usuario" value="#{login.usuario}" required="true"/>
+                    Contraseña:<p:password  id="password" value="#{login.password}" feedback="true" required="true"/>
+                </h:panelGrid>   
+                <p:commandButton value="Entrar" action="#{login.validacionLogin()}"/>
+            </p:panel>           
+
         </h:form>
     </h:body>
 </html>
