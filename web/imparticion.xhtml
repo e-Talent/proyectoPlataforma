@@ -8,25 +8,24 @@
         <title>Nueva impartición de un curso</title>
     </h:head>
     <h:body>
-       
+
+
+        <p:panel header="Selecciona un Curso">  
             <h:form>
-                Selecciona un curso:
-                <h:selectOneMenu id="seleccionCurso" value="#{agregarImparticion.idCurso}">
-                     <f:selectItems value="#{listaCursos.lista}"
-                                   var="curso"
-                                   itemValue="#{curso.idCurso}"
-                                   itemLabel="#{curso.nombre}"/>
-                </h:selectOneMenu><br/><br/>
-                 Elija fecha de inicio del curso:<p:outputLabel for="popup" value="Popup:" />
-                 <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
-                 
-                 Elija fecha de finalización del curso:<p:outputLabel for="popup" value="Popup:" />
-                 <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
-                 
-                 Nombre de la edición:<h:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
-                 <h:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" />
-                 <br/><br/>                
-             </h:form>        
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 <p:outputLabel for="curso" value="Curso:" />
+                    <p:selectOneListbox id="curso" value="#{agregarImparticion.idCurso}">                        
+                        <f:selectItems value="#{listaCursos.lista}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCurso}"/>                        
+                    </p:selectOneListbox>>
+                    <p:outputLabel for="popup" value="Fecha de Inicio: " />
+                    <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
+                    <p:outputLabel for="popup" value="Fecha de finalización: " />
+                    <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
+                    Nombre de la edición:<h:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
+                    <p:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" />   
+                </h:panelGrid>   
+            </h:form>  
+        </p:panel>    
     </h:body>
 </html>
 
