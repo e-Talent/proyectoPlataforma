@@ -7,9 +7,8 @@
         <title>Login</title>
     </h:head>
     <h:body>
-
         <h:form>          
-            <p:panel header="Iniciar Sesion">  
+            <p:panel header="Iniciar Sesion" style="width: 500px; margin-left: 35%; margin-top: 50px;">  
                 <h:panelGrid columns="2" cellpadding="5">               
                     Usuario:<p:inputText id="usuario" value="#{login.usuario}" required="true"/>
                     Contraseña:<p:password  id="password" value="#{login.password}" feedback="true" required="true"/>

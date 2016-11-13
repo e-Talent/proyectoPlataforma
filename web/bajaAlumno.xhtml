@@ -2,25 +2,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"     
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Baja Alumnos</title>
     </h:head>
     <h:body>
-        Listado de Cursos Activos
-        <br />
-        <h:form> 
-            <h:dataTable value="#{imparticionesActivas.lista}" var="imparticion">
-                <h:column>              
-                    <f:facet name="header">Curso</f:facet> 
-                        #{imparticion.idCurso.nombre}
-                </h:column>    
-                <h:column>              
-                    <f:facet name="header">Impartición</f:facet> 
-                    <h:commandLink value="#{imparticion.nombre}" action="index"/>                     
-                </h:column>    
-            </h:dataTable> 
-        </h:form>
+        <p:panel header="Listado de Cursos">        
+            <h:form> 
+                <p:dataTable id="tablaBajaAlumnos" value="#{imparticionesActivas.lista}" var="imparticion">
+                    <p:column headerText="Curso">            
+                        <h:outputText value="#{imparticion.idCurso.nombre}"/>                        
+                    </p:column>    
+                    <p:column headerText="Imparticion">            
+                        <p:commandLink value="#{imparticion.nombre}" action="index"/>                     
+                    </p:column>    
+                </p:dataTable> 
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

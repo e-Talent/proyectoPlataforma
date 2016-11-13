@@ -2,21 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <h:dataTable value="#{listaCursos.lista}" var="curso">
-                <h:column>              
-                    <f:facet name="header">Curso</f:facet> 
-                        #{curso.nombre}
-                </h:column>    
-              <h:column>              
-                    <f:facet name="header">Descripcion</f:facet> 
-                        #{curso.descripcion}
-                </h:column> 
-            </h:dataTable> 
+    <h:body>   
+        <p:panel header="Listado de Cursos">  
+            <p:dataTable value="#{listaCursos.lista}" var="curso">
+                <p:column headerText="Curso">
+                    <h:outputText value="#{curso.nombre}" />
+                </p:column> 
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{curso.descripcion}" />
+                </p:column> 
+            </p:dataTable>
+        </p:panel>
     </h:body>
 </html>
 

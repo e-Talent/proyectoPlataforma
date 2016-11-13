@@ -14,7 +14,7 @@
                     Nombre del curso:<p:inputText id="nombreCurso" value="#{agregarCurso.nombre}" />
                     Descripción:<p:inputTextarea id="descripcion" value="#{agregarCurso.descripcion}" />         
                     <p:growl id="messages" showDetail="true" /> 
-                    <p:fileUpload value="#{agregarCurso.temario}" mode="simple"/>  <p:commandButton value="Subir" ajax="false" actionListener="#{vistaSubidaArchivo.upload}" disabled="true" />              
+                    <p:fileUpload value="#{agregarCurso.temario}" mode="simple"/>
                 </h:panelGrid> 
                 <p:commandButton value="Guardar" action="#{agregarCurso.guardarCurso()}" ajax="false" />
                 <p:commandButton value="Crear impartición" action="index" />           

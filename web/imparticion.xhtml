@@ -8,15 +8,13 @@
         <title>Nueva impartición de un curso</title>
     </h:head>
     <h:body>
-
-
         <p:panel header="Selecciona un Curso">  
             <h:form>
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                  <p:outputLabel for="curso" value="Curso:" />
                     <p:selectOneListbox id="curso" value="#{agregarImparticion.idCurso}">                        
                         <f:selectItems value="#{listaCursos.lista}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCurso}"/>                        
-                    </p:selectOneListbox>>
+                    </p:selectOneListbox>
                     <p:outputLabel for="popup" value="Fecha de Inicio: " />
                     <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
                     <p:outputLabel for="popup" value="Fecha de finalización: " />
