@@ -1,5 +1,7 @@
 package modelo.DAO;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import persistencia.Examen;
@@ -134,11 +138,22 @@ public class ControladorDAO implements InterfazDAO {
         List<Examen> aux = query.getResultList();
         List<Examen> lista = new ArrayList<>();
         for (Examen e : aux) {
-            if (e.getIdImparticion().getIdImparticion()==Integer.parseInt(idImparticion)) {
+            if (e.getIdImparticion().getIdImparticion() == Integer.parseInt(idImparticion)) {
                 lista.add(e);
             }
         }
         return lista;
     }
 
+    @Override
+    public StreamedContent descargarFoto(String dni) {
+        Query query = em.createNamedQuery("Usuario.findByDni");
+        query.setParameter("dni", dni);
+        Usuario resultado = (Usuario) query.getSingleResult();
+        byte[] f = resultado.getFoto();
+        InputStream fotoStream = new ByteArrayInputStream(f);
+        StreamedContent foto;
+        foto = new DefaultStreamedContent(fotoStream);
+        return foto;
+    }
 }
