@@ -24,7 +24,7 @@ public class AgregarCurso {
      private String nombre;
      private String descripcion;  
      private UploadedFile temario;
-     private String destination="C:\\";
+     private String destination="C:\\temporal\\";
     
     public AgregarCurso() {
     }
@@ -71,16 +71,16 @@ public class AgregarCurso {
        
     public String guardarCurso(){
         //Creamos un curso vacío y le damos nombre y descripción (y el documento, en los que los lleven)
-        //Curso c= new Curso();
-        //c.setNombre(nombre);
-        //c.setDescripcion(descripcion);     
+        Curso c= new Curso();
+        c.setNombre(nombre);
+        c.setDescripcion(descripcion);     
             try {
             guardarTemario(temario.getFileName(), temario.getInputstream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         //A través de este método de la interfaz, mandamos los datos a la bbdd.
-        //iDAO.persist(c);
+        iDAO.persist(c);
         return "imparticion";
     } 
 

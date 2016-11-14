@@ -2,25 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>         
-         
-        <!-- Da problemas raros con el idImpartición, no parece reconocerlo, será por esto que fallan todos los select one menu, esperarán un string o algo concreto, buscar por ahí-->
-        <p:panel header="Alta de cursos"> 
-            <p:dataTable var="matricula" value="#{login.listaMatriculadas}">
-                    <p:column headerText="Id">
-                        <h:outputText value="#{matricula.idImparticion.idImparticion}" />
-                    </p:column>
-                    <p:column headerText="Curso">
-                        <h:outputText value="#{matricula.idImparticion.nombre}" />
-                    </p:column>
-                </p:dataTable>
-            <br/>
+    <h:body>        
+        <p:panel header="Menu Alumno"> 
             <h:form> 
-                Introduce el código del curso: <p:inputText value="#{cargarExamen.idImparticion}" />    
+                <p:selectOneRadio value="#{cargarExamen.idImparticion}">
+                    <f:selectItems var="matricula" value="#{login.listaMatriculadas}"
+                                   itemLabel="#{matricula.idImparticion.nombre}"
+                                   itemValue="#{matricula.idImparticion.idImparticion}"/>                                   
+                </p:selectOneRadio>              
                 <p:commandButton value="Ir a Examen" action="#{cargarExamen.cargar()}"/>
                 <p:commandButton value="Ir a Temario" action="index"/>
             </h:form>       

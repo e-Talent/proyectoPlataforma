@@ -7,6 +7,7 @@ import persistencia.Usuario;
 import java.util.List;
 import org.primefaces.model.StreamedContent;
 import persistencia.Examen;
+import persistencia.Respuesta;
 
 public interface InterfazDAO {
 
@@ -29,13 +30,13 @@ public interface InterfazDAO {
     public Imparticion buscarImparticionID(int idImparticion);
 
     public Usuario buscarUsuarioDNI(String DNI);
-    
+
     public List<Curso> listarCursosNombre(String nombre);
-    
-    public List<Matricula> imparticionesAlumno (String DNI);
-    
-    public List<Examen> cargarExamen (int idImparticion);
-    
+
+    public List<Matricula> imparticionesAlumno(String DNI);
+
+    public List<Examen> cargarExamen(int idImparticion);
+
     public StreamedContent descargarFoto(String DNI);
-    
+
 }

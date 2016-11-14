@@ -5,13 +5,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import modelo.DAO.InterfazDAO;
 import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Login {
     @ManagedProperty("#{cDAO}")   
     private InterfazDAO iDAO; 
