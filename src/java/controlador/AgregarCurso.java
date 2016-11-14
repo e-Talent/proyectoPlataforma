@@ -24,7 +24,7 @@ public class AgregarCurso {
      private String nombre;
      private String descripcion;  
      private UploadedFile temario;
-     private String destination="D:\\";
+     private String destination="C:\\";
     
     public AgregarCurso() {
     }
