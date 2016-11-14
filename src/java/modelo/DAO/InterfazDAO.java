@@ -34,7 +34,7 @@ public interface InterfazDAO {
     
     public List<Matricula> imparticionesAlumno (String DNI);
     
-    public List<Examen> cargarExamen (String idImparticion);
+    public List<Examen> cargarExamen (int idImparticion);
     
     public StreamedContent descargarFoto(String DNI);
     

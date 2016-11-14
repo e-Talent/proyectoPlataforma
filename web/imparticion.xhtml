@@ -10,17 +10,25 @@
     <h:body>
         <p:panel header="Selecciona un Curso">  
             <h:form>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                 <p:outputLabel for="curso" value="Curso:" />
-                    <p:selectOneListbox id="curso" value="#{agregarImparticion.idCurso}">                        
-                        <f:selectItems value="#{listaCursos.lista}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCurso}"/>                        
-                    </p:selectOneListbox>
+                <p:dataTable var="c" value="#{listaCursos.lista}" style="width: 300px">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{c.idCurso}" />
+                    </p:column>
+
+                    <p:column headerText="Curso">
+                        <h:outputText value="#{c.nombre}" />
+                    </p:column>
+                </p:dataTable>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">    
+
+                    Selecciona el id del curso: <p:spinner value="#{agregarImparticion.idCurso}"/>                      
+                            
                     <p:outputLabel for="popup" value="Fecha de Inicio: " />
                     <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
                     <p:outputLabel for="popup" value="Fecha de finalización: " />
                     <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
-                    Nombre de la edición:<h:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
-                    <p:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" />   
+                    Nombre de la edición:<p:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
+                    <p:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" ajax="false"/>   
                 </h:panelGrid>   
             </h:form>  
         </p:panel>    

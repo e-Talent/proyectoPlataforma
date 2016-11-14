@@ -1,25 +1,24 @@
-
 package controlador;
 
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import modelo.DAO.InterfazDAO;
 import persistencia.Imparticion;
 
-
 @ManagedBean
 @RequestScoped
 public class AgregarImparticion {
 
-     @ManagedProperty("#{cDAO}")
-     private InterfazDAO iDAO;
-     private String idCurso;
-     private Date fechaInicio;
-     private Date fechaFin;
-     private String nombre;
-     
+    @ManagedProperty("#{cDAO}")
+    private InterfazDAO iDAO;
+    private int idCurso;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private String nombre;
+
     public AgregarImparticion() {
     }
 
@@ -31,11 +30,11 @@ public class AgregarImparticion {
         this.iDAO = iDAO;
     }
 
-    public String getIdCurso() {
+    public int getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(String idCurso) {
+    public void setIdCurso(int idCurso) {
         this.idCurso = idCurso;
     }
 
@@ -62,21 +61,17 @@ public class AgregarImparticion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String guardarImparticion(){
+
+    public String guardarImparticion() {
         //Creamos una impartición vacía y le damos atributos.
-       // Imparticion i= new Imparticion();
+        Imparticion i = new Imparticion();
         // buscarCursoID busca un objeto curso que coincida con la ID
-       // i.setIdCurso(iDAO.buscarCursoID(idCurso));
-       // i.setFechaInicio(fechaInicio);
-        //i.setFechaFin(fechaFin);
-       // i.setNombre(nombre);
+        i.setIdCurso(iDAO.buscarCursoID(idCurso));
+        i.setFechaInicio(fechaInicio);
+        i.setFechaFin(fechaFin);
+        i.setNombre(nombre);
         //A través de este método de la interfaz, mandamos los datos a la bbdd.
-        //iDAO.persist(i);
-        System.out.println(idCurso);
-        System.out.println(fechaInicio);
-        System.out.println(fechaFin);
-        System.out.println(nombre);
+        iDAO.persist(i);
         return "menuAdmin";
     }
 }

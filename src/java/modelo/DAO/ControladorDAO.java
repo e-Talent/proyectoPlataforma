@@ -133,12 +133,12 @@ public class ControladorDAO implements InterfazDAO {
     }
 
     @Override
-    public List<Examen> cargarExamen(String idImparticion) {
+    public List<Examen> cargarExamen(int idImparticion) {
         Query query = em.createNamedQuery("Examen.findAll");
         List<Examen> aux = query.getResultList();
         List<Examen> lista = new ArrayList<>();
         for (Examen e : aux) {
-            if (e.getIdImparticion().getIdImparticion() == Integer.parseInt(idImparticion)) {
+            if (e.getIdImparticion().getIdImparticion() == idImparticion) {
                 lista.add(e);
             }
         }

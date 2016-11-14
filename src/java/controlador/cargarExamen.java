@@ -1,11 +1,13 @@
 package controlador;
 
+import java.util.Collection;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import modelo.DAO.InterfazDAO;
 import persistencia.Examen;
+import persistencia.Respuesta;
 
 @ManagedBean
 @RequestScoped
@@ -14,7 +16,7 @@ public class cargarExamen {
     @ManagedProperty("#{cDAO}")
     private InterfazDAO iDAO;
     private List<Examen> preguntas; 
-    private String idImparticion;
+    private int idImparticion;
       
     public cargarExamen() {
     }
@@ -27,11 +29,11 @@ public class cargarExamen {
         this.preguntas = preguntas;
     }
 
-    public String getIdImparticion() {
+    public int getIdImparticion() {
         return idImparticion;
     }
 
-    public void setIdImparticion(String idImparticion) {
+    public void setIdImparticion(int idImparticion) {
         this.idImparticion = idImparticion;
     }
 
@@ -45,7 +47,7 @@ public class cargarExamen {
     }       
     
     public String cargar() {
-    preguntas = iDAO.cargarExamen(idImparticion);
+    preguntas = iDAO.cargarExamen(idImparticion);      
     return "examen";
     }
 

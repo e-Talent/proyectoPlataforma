@@ -9,10 +9,10 @@
         <Node id="menuAdmin.xhtml" x="650" y="300" zoom="true"/>
         <Node id="cursoAlumno.xhtml" x="650" y="138" zoom="true"/>
         <Node id="imparticion.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="consultaCursosActivos.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="menuAlumno.xhtml" x="365" y="140" zoom="true"/>
         <Node id="matricularAlumnos.xhtml" x="400" y="300" zoom="true"/>
         <Node id="examen.xhtml" x="333" y="208" zoom="true"/>
-        <Node id="menuAlumno.xhtml" x="365" y="140" zoom="true"/>
-        <Node id="consultaCursosActivos.xhtml" x="400" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
