@@ -37,6 +37,6 @@ public interface InterfazDAO {
 
     public List<Examen> cargarExamen(int idImparticion);
 
-    public StreamedContent descargarFoto(String DNI);
+
 
 }

@@ -146,16 +146,4 @@ public class ControladorDAO implements InterfazDAO {
         return lista;
     }
 
-    @Override
-    public StreamedContent descargarFoto(String dni) {
-        Query query = em.createNamedQuery("Usuario.findByDni");
-        query.setParameter("dni", dni);
-        Usuario resultado = (Usuario) query.getSingleResult();
-        byte[] f = resultado.getFoto();
-        InputStream fotoStream = new ByteArrayInputStream(f);
-        StreamedContent foto;
-        foto = new DefaultStreamedContent(fotoStream);
-        return foto;
-    }
- 
 }

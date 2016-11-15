@@ -10,11 +10,11 @@
     </h:head>
     <h:body>
         <h:form> 
-            <h:dataTable value="#{cargarExamen.preguntasExamen}" var="pe">
+            <h:dataTable value="#{cargarExamen.preguntas}" var="pe">
                 <h:column>
-                    <h:outputText value="#{pe.pregunta.enunciado}"/>
-                    <p:selectOneListbox value="#{pe.valorGuardado}">
-                        <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
+                    <h:outputText value="#{pe.idPregunta.enunciado}"/>
+                    <p:selectOneListbox>
+                        <f:selectItems var="r" value="#{pe.idPregunta.respuestaCollection}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
                     </p:selectOneListbox>
                 </h:column>
             </h:dataTable>

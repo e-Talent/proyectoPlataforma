@@ -65,10 +65,9 @@ public class Usuario implements Serializable {
     private String email;
     @Basic(optional = false)
     @Column(name = "rol")
-    private String rol;
-    @Lob
+    private String rol;   
     @Column(name = "foto")
-    private byte[] foto;
+    private String foto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dni")
     private Collection<Matricula> matriculaCollection;
 
@@ -153,11 +152,11 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

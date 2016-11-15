@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.io.File;
@@ -13,19 +12,18 @@ import modelo.DAO.InterfazDAO;
 import org.primefaces.model.UploadedFile;
 import persistencia.Curso;
 
-
 @ManagedBean
 @RequestScoped
 public class AgregarCurso {
 
-     @ManagedProperty("#{cDAO}")
-     private InterfazDAO iDAO;
-     private String urlDocumento;
-     private String nombre;
-     private String descripcion;  
-     private UploadedFile temario;
-     private String destination="C:\\temporal\\";
-    
+    @ManagedProperty("#{cDAO}")
+    private InterfazDAO iDAO;
+    private String urlDocumento;
+    private String nombre;
+    private String descripcion;
+    private UploadedFile temario;
+    private String destination = "C:\\temporal\\";
+
     public AgregarCurso() {
     }
 
@@ -59,22 +57,24 @@ public class AgregarCurso {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }  
+    }
 
-   public UploadedFile getTemario() {
+    public UploadedFile getTemario() {
         return temario;
     }
 
     public void setTemario(UploadedFile temario) {
         this.temario = temario;
-    }    
-       
-    public String guardarCurso(){
+    }
+
+    public String guardarCurso() {
         //Creamos un curso vacío y le damos nombre y descripción (y el documento, en los que los lleven)
-        Curso c= new Curso();
+        Curso c = new Curso();
+        urlDocumento = temario.getFileName();
         c.setNombre(nombre);
-        c.setDescripcion(descripcion);     
-            try {
+        c.setDescripcion(descripcion);
+        c.setDocumento(urlDocumento);        
+        try {
             guardarTemario(temario.getFileName(), temario.getInputstream());
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,28 +82,27 @@ public class AgregarCurso {
         //A través de este método de la interfaz, mandamos los datos a la bbdd.
         iDAO.persist(c);
         return "imparticion";
-    } 
-
-  public void guardarTemario(String fileName, InputStream in) {
-    
-           try {                            
-                // write the inputStream to a FileOutputStream
-                OutputStream out = new FileOutputStream(new File(destination + fileName));
-              
-                int read = 0;
-                byte[] bytes = new byte[1024];
-              
-                while ((read = in.read(bytes)) != -1) {
-                    out.write(bytes, 0, read);
-                }              
-                in.close();
-                out.flush();
-                out.close();              
-                System.out.println("New file created!");
-                } catch (IOException e) {
-                System.out.println(e.getMessage());
-                }
     }
-    
-    
+
+    public void guardarTemario(String fileName, InputStream in) {
+
+        try {
+            // write the inputStream to a FileOutputStream
+            OutputStream out = new FileOutputStream(new File(destination + fileName));
+
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = in.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            in.close();
+            out.flush();
+            out.close();
+            System.out.println("New file created!");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
