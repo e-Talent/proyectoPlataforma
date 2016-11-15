@@ -37,6 +37,7 @@ public interface InterfazDAO {
 
     public List<Examen> cargarExamen(int idImparticion);
 
-
+    public Imparticion buscarTemario(int idImparticion);
+   
 
 }

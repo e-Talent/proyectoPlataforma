@@ -22,7 +22,7 @@ public class AgregarCurso {
     private String nombre;
     private String descripcion;
     private UploadedFile temario;
-    private String destination = "C:\\temporal\\";
+    private String destination = "C:\\NeatBean\\plataformaCursos\\web\\resources\\";
 
     public AgregarCurso() {
     }

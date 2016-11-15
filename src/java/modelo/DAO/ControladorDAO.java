@@ -1,7 +1,5 @@
 package modelo.DAO;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,12 +12,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import persistencia.Examen;
-import persistencia.Respuesta;
 
 @Component(value = "cDAO")
 public class ControladorDAO implements InterfazDAO {
@@ -145,5 +140,12 @@ public class ControladorDAO implements InterfazDAO {
         }
         return lista;
     }
+
+    @Override
+    public Imparticion buscarTemario(int idImparticion) {        
+        return em.find(Imparticion.class, idImparticion);
+       }
+    
+    
 
 }

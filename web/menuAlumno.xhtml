@@ -16,7 +16,7 @@
                                    itemValue="#{matricula.idImparticion.idImparticion}"/>                                   
                 </p:selectOneRadio>              
                 <p:commandButton value="Ir a Examen" action="#{cargarExamen.cargar()}"/>
-                <p:commandButton value="Ir a Temario" action="temario"/>
+                <p:commandButton value="Ir a Temario" action="#{cargarExamen.temario()}"/>
             </h:form>       
         </p:panel>
     </h:body>

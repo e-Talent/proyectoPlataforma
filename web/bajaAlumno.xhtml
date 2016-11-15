@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"     
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Baja Alumnos</title>
     </h:head>
@@ -12,11 +13,11 @@
             <h:form> 
                 <p:dataTable id="tablaBajaAlumnos" value="#{imparticionesActivas.lista}" var="imparticion">
                     <p:column headerText="Curso">            
-                        <h:outputText value="#{imparticion.idCurso.nombre}"/>                        
-                    </p:column>    
-                    <p:column headerText="Imparticion">            
-                        <p:commandLink value="#{imparticion.nombre}" action="index"/>                     
-                    </p:column>    
+                        <h:outputText value="#{imparticion.nombre}"/>   
+                        <ui:repeat value="#{imparticion.matriculaCollection}" var="alumno">
+                        #{alumno.dni.nombre}
+                        </ui:repeat>
+                    </p:column>                      
                 </p:dataTable> 
             </h:form>
         </p:panel>

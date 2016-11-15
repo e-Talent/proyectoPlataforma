@@ -6,9 +6,9 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <object type="application/pdf" data="resources/temarios/spring.pdf" height="500px" width="75%" internalinstanceid="3">
-            Your browser can't display pdf, <a href="resources/temarios/spring.pdf">click</a> to download pdf instead.
-        </object>       
-    </h:body>
+        <object type="application/pdf" data="#{cargarExamen.urlTemario}" height="500px" width="75%" internalinstanceid="3">
+            Your browser can't display pdf, <a href="#{cargarExamen.urlTemario}">click</a> to download pdf instead.
+        </object>      
+        </h:body>
 </html>
 

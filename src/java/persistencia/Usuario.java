@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -68,7 +69,7 @@ public class Usuario implements Serializable {
     private String rol;   
     @Column(name = "foto")
     private String foto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dni")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dni", fetch=FetchType.EAGER)
     private Collection<Matricula> matriculaCollection;
 
     public Usuario() {
