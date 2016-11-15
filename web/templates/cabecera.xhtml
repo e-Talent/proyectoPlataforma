@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            
+                <p:graphicImage url="resources/pinya.jpg" id="logo"></p:graphicImage>
+                <h:form >
+                    <p:commandButton value="Salir" action="../index.xhtml" icon="ui-icon-extlink"/> 
+                </h:form>
+                <p:panel>
+                    <h:form>
+                        <p:growl id="message"></p:growl>
+                        <p:splitButton value="Cursos" styleClass="botonMenu" style="width:35%" icon="ui-icon-note">
+                            <p:menuitem value="Alta de cursos" action="altaCurso" ajax="false" icon="ui-icon-document"></p:menuitem>
+                            <p:menuitem value="Impartición de cursos" action="#{listaCursos.listarCursos()}" ajax="false" icon="ui-icon-calendar"></p:menuitem>
+                            <p:menuitem value="Consulta de cursos activos" action="null" ajax="false" icon="ui-icon-arrowreturnthick-1-w" ></p:menuitem>
+                        </p:splitButton> 
+                        <p:splitButton value="Alumnos" styleClass="botonMenu"  style="width:35%" icon="ui-icon-person">
+                            <p:menuitem value="Matricular alumnos" action="#{imparticionesActivas.imparticionesActivas()}" ajax="false"  icon="ui-icon-bookmark"></p:menuitem>
+                            <p:menuitem value="Baja de alumnos" action="#{imparticionesActivas.darBajaAlumno()}" ajax="false" icon="ui-icon-trash"></p:menuitem> 
+                        </p:splitButton> 
+                        <h:form>
+                            Cursos: <p:inputText value="#{listaCursos.nombre}"/> 
+                            <p:commandButton value="Buscar" action="#{listaCursos.buscador()}"  icon="ui-icon-search"/>
+                        </h:form>
+                    </h:form>           
+                </p:panel>
+            
+        </ui:composition>
+    </body>
+</html>
