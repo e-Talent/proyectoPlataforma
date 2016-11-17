@@ -5,21 +5,27 @@
  */
 package controlador;
 
-import java.util.List;
+import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import persistencia.Pregunta;
-import persistencia.Respuesta;
 
 @ManagedBean
 @RequestScoped
 public class PreguntaExamen {
-    
-    private Pregunta pregunta;
-    private List<Respuesta> respuestas;
-    private String valorGuardado;
-
+private Collection respuestas;
+private Pregunta pregunta;
+private int valueRespuesta;
+       
     public PreguntaExamen() {
+    }
+
+    public Collection getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(Collection respuestas) {
+        this.respuestas = respuestas;
     }
 
     public Pregunta getPregunta() {
@@ -30,20 +36,12 @@ public class PreguntaExamen {
         this.pregunta = pregunta;
     }
 
-    public List<Respuesta> getRespuestas() {
-        return respuestas;
+    public int getValueRespuesta() {
+        return valueRespuesta;
     }
 
-    public void setRespuestas(List<Respuesta> respuestas) {
-        this.respuestas = respuestas;
-    }
-
-    public String getValorGuardado() {
-        return valorGuardado;
-    }
-
-    public void setValorGuardado(String valorGuardado) {
-        this.valorGuardado = valorGuardado;
-    }   
-            
+    public void setValueRespuesta(int valueRespuesta) {
+        this.valueRespuesta = valueRespuesta;
+    }              
+          
 }

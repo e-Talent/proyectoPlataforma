@@ -10,13 +10,13 @@
     <h:body>        
         <p:panel header="Menu Alumno"> 
             <h:form> 
-                <p:selectOneRadio value="#{cargarExamen.idImparticion}">
+                <p:selectOneRadio value="#{gestionExamen.idImparticion}">
                     <f:selectItems var="matricula" value="#{login.listaMatriculadas}"
                                    itemLabel="#{matricula.idImparticion.nombre}"
                                    itemValue="#{matricula.idImparticion.idImparticion}"/>                                   
                 </p:selectOneRadio>              
-                <p:commandButton value="Ir a Examen" action="#{cargarExamen.cargar()}"/>
-                <p:commandButton value="Ir a Temario" action="#{cargarExamen.temario()}"/>
+                <p:commandButton value="Ir a Examen" action="#{gestionExamen.cargar()}"/>
+                <p:commandButton value="Ir a Temario" action="#{gestionExamen.temario()}"/>
             </h:form>       
         </p:panel>
     </h:body>
