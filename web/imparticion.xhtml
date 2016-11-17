@@ -3,27 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Nueva impartición de un curso</title>
     </h:head>
     <h:body>
-        <p:panel header="Selecciona un Curso">  
-            <h:form>           
-                  <p:selectOneRadio value="#{agregarImparticion.idCurso}">
-                    <f:selectItems var="c" value="#{listaCursos.lista}"
-                                   itemLabel="#{c.nombre}"
-                                   itemValue="#{c.idCurso}"/>                                  
-                </p:selectOneRadio>                                            
-                    <p:outputLabel for="popup" value="Fecha de Inicio: " />
-                    <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
-                    <p:outputLabel for="popup" value="Fecha de finalización: " />
-                    <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
-                    Nombre de la edición:<p:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
-                    <p:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" ajax="false"/>   
-                 
-            </h:form>  
-        </p:panel>    
+        <ui:composition template="templates/plantillaPrincipal.xhtml">
+            <ui:define name="content">
+                <p:panel header="Selecciona un Curso">  
+                    <h:form>           
+                        <p:selectOneRadio value="#{agregarImparticion.idCurso}">
+                            <f:selectItems var="c" value="#{listaCursos.lista}"
+                                           itemLabel="#{c.nombre}"
+                                           itemValue="#{c.idCurso}"/>                                  
+                        </p:selectOneRadio>                                            
+                        <p:outputLabel for="popup" value="Fecha de Inicio: " />
+                        <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
+                        <p:outputLabel for="popup" value="Fecha de finalización: " />
+                        <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
+                        Nombre de la edición:<p:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" /><br/>
+                        <p:commandButton value="Guardar" action="#{agregarImparticion.guardarImparticion()}" ajax="false"/>   
+
+                    </h:form> 
+                </p:panel>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

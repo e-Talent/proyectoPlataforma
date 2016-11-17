@@ -3,52 +3,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>      
+        <ui:composition template="templates/plantillaPrincipal.xhtml">
+            <ui:define name="content">
+                <h:form>      
 
-            <p:panel id="panel" header="Search Form" style="margin-bottom:10px;">
+                    <p:panel id="panel" header="Search Form" style="margin-bottom:10px;">
 
-                <p:messages id="messages" />            <h:panelGrid columns="4" cellpadding="5">
+                            <p:messages id="messages" />            
+                            <h:panelGrid columns="4" cellpadding="5">
 
-                    <h:outputLabel for="Buscar" value="Buscar: " />
+                            <h:outputLabel for="Buscar" value="Buscar: " />
 
-                    <p:inputText id="buscar" value="#{searchView.buscar}" required="true" label=Buscar>
+                            <p:inputText id="buscar" value="#{searchView.buscar}" required="true" label=Buscar>
 
-                        <f:validateLength minimum="2" />
+                                <f:validateLength minimum="2" />
 
-                    </p:inputText>
+                            </p:inputText>
 
-                    <p:message for="buscar" />
+                            <p:message for="buscar" />
 
-                    <h:outputText value="#{searchView.buscar}" />                <h:outputLabel for="opcion" value="Opcion: " />
+                            <h:outputText value="#{searchView.buscar}" />                <h:outputLabel for="opcion" value="Opcion: " />
 
-                    <h:selectOneMenu id="opcion" value="#{searchView.opcion}" required="true" label="opcion">
+                            <h:selectOneMenu id="opcion" value="#{searchView.opcion}" required="true" label="opcion">
 
-                        <f:selectItem itemLabel="Seleccione una" itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Seleccione una" itemValue="" noSelectionOption="true" />
 
-                        <f:selectItem itemLabel="Categoria" itemValue="1" />
+                                <f:selectItem itemLabel="Categoria" itemValue="1" />
 
-                        <f:selectItem itemLabel="Nombre" itemValue="2" />
+                                <f:selectItem itemLabel="Nombre" itemValue="2" />
 
-                        <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                <f:selectItem itemLabel="Option 3" itemValue="3" />
 
-                    </h:selectOneMenu>
+                            </h:selectOneMenu>
 
-                    <p:message for="" />
+                            <p:message for="" />
 
-                    <h:outputText value="#{searchView.opcion}" />
+                            <h:outputText value="#{searchView.opcion}" />
 
-                </h:panelGrid>
+                        </h:panelGrid>
 
-            </p:panel>        <h:panelGrid columns="1">
+                        </p:panel>       
+                        <h:panelGrid columns="1">
 
-                <p:commandButton process="buscar" update="buscar" value="buscar" />
+                        <p:commandButton process="buscar" update="buscar" value="buscar" />
 
-            </h:panelGrid>
+                    </h:panelGrid>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

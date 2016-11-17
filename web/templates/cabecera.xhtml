@@ -9,7 +9,7 @@
             
                 <p:graphicImage url="resources/pinya.jpg" id="logo"></p:graphicImage>
                 <h:form >
-                    <p:commandButton value="Salir" action="../index.xhtml" icon="ui-icon-extlink"/> 
+                    <p:commandButton value="Salir" action="index" icon="ui-icon-extlink" id="botonSalir"/> 
                 </h:form>
                 <p:panel>
                     <h:form>
@@ -22,6 +22,9 @@
                         <p:splitButton value="Alumnos" styleClass="botonMenu"  style="width:35%" icon="ui-icon-person">
                             <p:menuitem value="Matricular alumnos" action="#{imparticionesActivas.imparticionesActivas()}" ajax="false"  icon="ui-icon-bookmark"></p:menuitem>
                             <p:menuitem value="Baja de alumnos" action="#{imparticionesActivas.darBajaAlumno()}" ajax="false" icon="ui-icon-trash"></p:menuitem> 
+                        </p:splitButton> 
+                        <p:splitButton value="Usuarios" styleClass="botonMenu" style="width:35%" icon="ui-icon-person">
+                            <p:menuitem value="Alta de usuarios" action="altaUsuario" ajax="false" icon="ui-icon-person"></p:menuitem>
                         </p:splitButton> 
                         <h:form>
                             Cursos: <p:inputText value="#{listaCursos.nombre}"/> 

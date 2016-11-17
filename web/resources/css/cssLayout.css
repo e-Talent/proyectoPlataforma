@@ -84,12 +84,29 @@
 
 .botonSalir{
    position: relative !important;
-   float: right !important;
+   
+   float:right !important;
    width: 35%!important;
-    
+   height: 90px;
+   margin: 0px;
+   padding: 0px;
 }
 
 
+#imagenPie{
+    
+    display: block;
+    margin: auto;
+    background-color: #ece3a5;
+   width:60px!important;
+   height: 36px!important;
+    
+}
+
+#contacto{
+   text-align: center !important; 
+    
+}
 
 /*
 .ui-widget{font-family:"Segoe UI", Verdana, Arial, sans-serif;font-size:13px;}
