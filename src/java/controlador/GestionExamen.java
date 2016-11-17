@@ -3,12 +3,15 @@ package controlador;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.DAO.InterfazDAO;
 import persistencia.Examen;
 import persistencia.Imparticion;
+import persistencia.Matricula;
 import persistencia.Pregunta;
 
 @ManagedBean
@@ -21,7 +24,8 @@ public class GestionExamen {
     private List<PreguntaExamen> preguntasExamen;
     private int idImparticion;
     private String urlTemario;
-    private int nota;
+    private double nota;
+    private String dni;
 
     public GestionExamen() {
     }
@@ -29,15 +33,26 @@ public class GestionExamen {
     public String corregir() {
         nota = 0;
         for (PreguntaExamen pe : preguntasExamen) {
-            if (pe.getValueRespuesta()==pe.getPregunta().getRespuestaCorrecta()) {
-             nota+=2;   
+            if (pe.getValueRespuesta() == pe.getPregunta().getRespuestaCorrecta()) {
+                nota += 2;
             }
         }
         System.out.println(nota);
-        return "menuAlumno";
+        iDAO.ponerNota(dni, idImparticion, nota);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getViewRoot().findComponent("j_idt5:grabarExamen").setRendered(false);
+        context.addMessage(null, new FacesMessage("Examen realizado", "Su nota es: " + nota));
+        return null;
     }
 
-    public String cargar() {
+    public String cargar(String dni) {
+        this.dni = dni;
+        Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
+        if (matricula.getNota()!=null) {
+        FacesContext context = FacesContext.getCurrentInstance();        
+        context.addMessage(null, new FacesMessage("Examen ya realizado", "Su nota es: " + matricula.getNota()));
+        return null;
+        } else {
         preguntasExamen = new ArrayList<>();
         preguntas = iDAO.cargarExamen(idImparticion);
         for (Examen p : preguntas) {
@@ -49,6 +64,7 @@ public class GestionExamen {
             preguntasExamen.add(pe);
         }
         return "examen";
+        }
     }
 
     public String temario() {
@@ -98,12 +114,20 @@ public class GestionExamen {
         this.preguntasExamen = preguntasExamen;
     }
 
-    public int getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(double nota) {
         this.nota = nota;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
 }

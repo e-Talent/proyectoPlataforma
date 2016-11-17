@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Matricula.findAll", query = "SELECT m FROM Matricula m"),
     @NamedQuery(name = "Matricula.findByIdMatricula", query = "SELECT m FROM Matricula m WHERE m.idMatricula = :idMatricula"),
+    @NamedQuery(name = "Matricula.ponerNota", query = "SELECT m FROM Matricula m WHERE m.dni = :dni AND m.idImparticion = :idImparticion"),
     @NamedQuery(name = "Matricula.findByNota", query = "SELECT m FROM Matricula m WHERE m.nota = :nota")})
 public class Matricula implements Serializable {
 
@@ -111,5 +112,5 @@ public class Matricula implements Serializable {
     public String toString() {
         return "DAO.Matricula[ idMatricula=" + idMatricula + " ]";
     }
-    
+
 }

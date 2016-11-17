@@ -9,15 +9,20 @@
     </h:head>
     <h:body>
         <h:form> 
-            <h:dataTable value="#{gestionExamen.preguntasExamen}" var="pe">
-                <h:column>                    
-                    <h:outputText value="#{pe.pregunta.enunciado}"/>
-                    <p:selectOneListbox value="#{pe.valueRespuesta}">
-                        <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
-                    </p:selectOneListbox>
-                </h:column>
-            </h:dataTable>
-            <p:commandButton value="Grabar Examen" action="#{gestionExamen.corregir()}"/>
+            <p:growl id="growlExamen" showDetail="true" sticky="true"/>
+            <p:panel>  
+                <h:dataTable value="#{gestionExamen.preguntasExamen}" var="pe">
+                    <h:column>                   
+                        <p:panel header="#{pe.pregunta.enunciado}"> 
+                            <p:selectOneRadio value="#{pe.valueRespuesta}" layout="grid" columns="1">
+                                <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
+                            </p:selectOneRadio>
+                        </p:panel>
+                    </h:column>
+                </h:dataTable>
+                <p:commandButton id="grabarExamen" value="Grabar Examen" actionListener="#{gestionExamen.corregir}" update="growlExamen" rendered="true"/>
+                <p:commandButton value="Volver" action="index"/>
+            </p:panel>
         </h:form>      
     </h:body>
 </html>

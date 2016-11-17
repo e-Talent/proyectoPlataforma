@@ -10,12 +10,13 @@
     <h:body>        
         <p:panel header="Menu Alumno"> 
             <h:form> 
+                <p:growl id="growlMenuAlumno" showDetail="true" sticky="true"/>
                 <p:selectOneRadio value="#{gestionExamen.idImparticion}">
                     <f:selectItems var="matricula" value="#{login.listaMatriculadas}"
                                    itemLabel="#{matricula.idImparticion.nombre}"
                                    itemValue="#{matricula.idImparticion.idImparticion}"/>                                   
-                </p:selectOneRadio>              
-                <p:commandButton value="Ir a Examen" action="#{gestionExamen.cargar()}"/>
+                </p:selectOneRadio> 
+                <p:commandButton value="Ir a Examen" action="#{gestionExamen.cargar(login.user.dni)}" update="growlMenuAlumno"/>
                 <p:commandButton value="Ir a Temario" action="#{gestionExamen.temario()}"/>
             </h:form>       
         </p:panel>

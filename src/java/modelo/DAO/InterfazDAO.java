@@ -5,9 +5,7 @@ import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
 import java.util.List;
-import org.primefaces.model.StreamedContent;
 import persistencia.Examen;
-import persistencia.Respuesta;
 
 public interface InterfazDAO {
 
@@ -38,6 +36,9 @@ public interface InterfazDAO {
     public List<Examen> cargarExamen(int idImparticion);
 
     public Imparticion buscarTemario(int idImparticion);
-   
+
+    public void ponerNota(String dni, int idImparticion, double nota);
+    
+    public Matricula buscarMatricula(String dni, int idImparticion);
 
 }

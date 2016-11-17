@@ -142,10 +142,26 @@ public class ControladorDAO implements InterfazDAO {
     }
 
     @Override
-    public Imparticion buscarTemario(int idImparticion) {        
+    public Imparticion buscarTemario(int idImparticion) {
         return em.find(Imparticion.class, idImparticion);
-       }
-    
-    
+    }
+
+    @Transactional()
+    @Override
+    public void ponerNota(String dni, int idImparticion, double nota) {
+       Matricula resultado = buscarMatricula(dni, idImparticion);      
+       resultado.setNota(nota);             
+    }
+
+    @Override
+    public Matricula buscarMatricula(String dni, int idImparticion) {
+          Query query = em.createNamedQuery("Matricula.ponerNota");
+        Usuario usuario = em.find(Usuario.class, dni);
+        Imparticion imparticion = em.find(Imparticion.class, idImparticion);
+        query.setParameter("dni", usuario);
+        query.setParameter("idImparticion", imparticion);
+        Matricula resultado = (Matricula) query.getSingleResult();  
+        return resultado;
+    }
 
 }
