@@ -12,9 +12,13 @@ import persistencia.Pregunta;
 
 @ManagedBean
 @RequestScoped
+/**
+ * Con esta clase unimos una pregunta con sus respuestas y el valor de la
+ * respuesta introducida por el usuario
+ */
 public class PreguntaExamen {
-private Collection respuestas;
-private Pregunta pregunta;
+private Collection respuestas; //Interfaz que es “la raíz” de todas las colecciones
+private Pregunta pregunta; //Objeto de la entity pregunta(paquete persistencia)
 private int valueRespuesta;
        
     public PreguntaExamen() {

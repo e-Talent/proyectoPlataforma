@@ -30,10 +30,21 @@ public class GestionExamen {
     public GestionExamen() {
     }
 
+    /**
+     * Método que se encargará de la corrección de los exámenes. Controlará que
+     * una vez puesta la nota no se pueda enviar de nuevo.
+     *
+     * @return
+     */
     public String corregir() {
         nota = 0;
+        //PreguntaExamen es una clase del controlador, contiene un collection de
+        //respuestas, un objeto de pregunta y un int de la respuesta(valueRespuesta)
+        //PreguntasExamen es la lista que hemos declarado como atributo en esta clase.
         for (PreguntaExamen pe : preguntasExamen) {
+            //Comparamos la respuesta introducida con la correcta
             if (pe.getValueRespuesta() == pe.getPregunta().getRespuestaCorrecta()) {
+                //Si existe coincidencia sumamos dos puntos
                 nota += 2;
             }
         }
@@ -45,28 +56,44 @@ public class GestionExamen {
         return null;
     }
 
+    /**
+     * Método que se encargará de cargar el exámen en caso de que no se haya
+     * realizado. Si ya ha sido realizado mostrará un aviso indicando que ya ha
+     * sido realizado junto con la nota. Cada vez que pulsemos en enviar el
+     * examen se recargará examen.xhtml
+     *
+     * @param dni
+     * @return examen
+     */
     public String cargar(String dni) {
         this.dni = dni;
         Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
-        if (matricula.getNota()!=null) {
-        FacesContext context = FacesContext.getCurrentInstance();        
-        context.addMessage(null, new FacesMessage("Examen ya realizado", "Su nota es: " + matricula.getNota()));
-        return null;
+        if (matricula.getNota() != null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Examen ya realizado", "Su nota es: " + matricula.getNota()));
+            return null;
+            //En caso de que nota (nota=null)
         } else {
-        preguntasExamen = new ArrayList<>();
-        preguntas = iDAO.cargarExamen(idImparticion);
-        for (Examen p : preguntas) {
-            PreguntaExamen pe = new PreguntaExamen();
-            Collection respuestas = p.getIdPregunta().getRespuestaCollection();
-            Pregunta pregunta = p.getIdPregunta();
-            pe.setPregunta(pregunta);
-            pe.setRespuestas(respuestas);
-            preguntasExamen.add(pe);
-        }
-        return "examen";
+            preguntasExamen = new ArrayList<>();
+            preguntas = iDAO.cargarExamen(idImparticion);
+            for (Examen p : preguntas) {
+                PreguntaExamen pe = new PreguntaExamen();
+                Collection respuestas = p.getIdPregunta().getRespuestaCollection();
+                Pregunta pregunta = p.getIdPregunta();
+                pe.setPregunta(pregunta);
+                pe.setRespuestas(respuestas);
+                preguntasExamen.add(pe);
+            }
+            return "examen";
         }
     }
 
+    /**
+     * Método que se encargará de recuperar el temario en .pdf y mostrarlo en
+     * "temario.xhtml"
+     *
+     * @return temario
+     */
     public String temario() {
         Imparticion i = iDAO.buscarTemario(idImparticion);
         String nombre = i.getIdCurso().getDocumento();

@@ -126,6 +126,12 @@ public class AgregarUsuario {
         return fotoBytes;
     }
     
+     /**
+     * Método que recibe el nombre del archivo y el archivo en bytes y lo guarda
+     * en la ruta indicada (guardamos bytes).
+     * @param fileName
+     * @param in
+     */
     public void guardarFoto(String fileName, InputStream in) {
         
         try {
@@ -146,7 +152,12 @@ public class AgregarUsuario {
             System.out.println(e.getMessage());
         }
     }
-    
+     /**
+     * Metodo que se encarga de crear un nuevo objeto usuario y añadirle los
+     * valores recibidos desde "altaUsuario.xhtml". Una vez creado el objeto se 
+     * guarda en la base de datos y se nos dirigirá a index.xhtml
+     * @return index
+     */
     public String guardarUsuario() {
         //Creamos una impartición vacía y le damos atributos.
         Usuario u = new Usuario();

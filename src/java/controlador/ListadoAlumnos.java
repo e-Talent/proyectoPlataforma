@@ -10,6 +10,9 @@ import modelo.DAO.InterfazDAO;
 
 @ManagedBean
 @RequestScoped
+/**
+ * Clase que se encargará de recuperar una lista de alumnos
+ */
 public class ListadoAlumnos {
  
 @ManagedProperty("#{cDAO}")   
@@ -19,7 +22,11 @@ private List<Matricula> listaMatriculas = null;
     
      public ListadoAlumnos() {
     }
-     
+     /**
+      * Método con el que obtendremos una lista de todos los alumnos que están
+      * o han estado matriculados en alguna impartición
+      * @return listadoPrueba
+      */
      public String listarAlumnos() {  
      listaMatriculas = iDAO.listarMatriculas();
      return "listadoPrueba";

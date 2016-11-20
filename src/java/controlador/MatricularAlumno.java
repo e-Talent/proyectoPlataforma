@@ -42,12 +42,19 @@ public class MatricularAlumno {
         this.iDAO = iDAO;
     }
 
-    public String matricular () {
-    Matricula m = new Matricula();
-    m.setDni(iDAO.buscarUsuarioDNI(DNI));
-    m.setIdImparticion(iDAO.buscarImparticionID(idImparticion));
-    iDAO.persist(m);
-    return "menuAdmin";
+    /**
+     * Método con el que creamos un objeto matrícula y le introducimos el dni y
+     * el IdImparticion para despues agregarlo a la BD. La navegación nos
+     * llevará a "menuAdmin.xhtml"
+     *
+     * @return "menuAdmin"
+     */
+    public String matricular() {
+        Matricula m = new Matricula();
+        m.setDni(iDAO.buscarUsuarioDNI(DNI));
+        m.setIdImparticion(iDAO.buscarImparticionID(idImparticion));
+        iDAO.persist(m);
+        return "menuAdmin";
     }
-    
+
 }

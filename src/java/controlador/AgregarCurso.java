@@ -14,6 +14,9 @@ import persistencia.Curso;
 
 @ManagedBean
 @RequestScoped
+/**
+ * Clase que se encargará de guardar un nuevo curso en la base de datos
+ */
 public class AgregarCurso {
 
     @ManagedProperty("#{cDAO}")
@@ -66,9 +69,18 @@ public class AgregarCurso {
     public void setTemario(UploadedFile temario) {
         this.temario = temario;
     }
-
+/**
+     * Metodo que se encarga de crear un nuevo objeto curso y añadirle los
+     * valores recibidos desde "altacurso.xhtml". Una vez creado el objeto se
+     * guarda en la base de datos y se nos dirigirá a "imparticion.xhtml"
+     *
+     * @return menuAdmin
+     * @return imparticion (.xhtml a la que nos dirigimos tras ejecutar el
+     * método)
+     */
     public String guardarCurso() {
-        //Creamos un curso vacío y le damos nombre y descripción (y el documento, en los que los lleven)
+        //Creamos un objeto curso vacío y le damos nombre, descripción y el 
+        //documento, (aunque no es obligatorio).
         Curso c = new Curso();
         urlDocumento = temario.getFileName();
         c.setNombre(nombre);
@@ -79,15 +91,22 @@ public class AgregarCurso {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //A través de este método de la interfaz, mandamos los datos a la bbdd.
+        //A través de este método de la interfaz iDAO, mandamos los datos a la bbdd.
         iDAO.persist(c);
         return "imparticion";
     }
 
+    /**
+     * Método que recibe el nombre del archivo y el archivo en bytes y lo guarda
+     * en la ruta indicada (guardamos bytes)
+     *
+     * @param fileName (Nombre del archivo)
+     * @param in (Archivo en formato Stream)
+     */
     public void guardarTemario(String fileName, InputStream in) {
 
         try {
-            // write the inputStream to a FileOutputStream
+            // Pasamos de InputStream a FileOutputStream e indicamos donde se guarda
             OutputStream out = new FileOutputStream(new File(destination + fileName));
 
             int read = 0;

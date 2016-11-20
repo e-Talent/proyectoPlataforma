@@ -7,6 +7,11 @@ import persistencia.Usuario;
 import java.util.List;
 import persistencia.Examen;
 
+/**
+ * La interfaz contendrá la declaración de todos los métodos que se implementarán
+ * en en el controlador.
+ * @author Talentum Java
+ */
 public interface InterfazDAO {
 
     public void persist(Object object);

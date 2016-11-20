@@ -10,6 +10,10 @@ import persistencia.Imparticion;
 
 @ManagedBean
 @SessionScoped
+/**
+ * Clase que mostrará una lista de las imparticiones que hay activas en un
+ * determinado momento
+ */
 public class ImparticionesActivas {
 
     @ManagedProperty("#{cDAO}")
@@ -19,16 +23,32 @@ public class ImparticionesActivas {
     public ImparticionesActivas() {
     }
 
+    /**
+     * Método que se encarga de llamar al método de la interfazDAO(implementado
+     * por el controladorDAO) que determina cuales son las imparticiones
+     * activas. Por último nos redigirá a la "matricularAlumnos.xhtml" para que
+     * solo se pueda matricular alumnos en las imparticiones activas.
+     *
+     * @return matricularAlumnos
+     */
     public String imparticionesActivas() {
         lista = iDAO.imparticionesActivas();
         return "matricularAlumnos";
     }
 
-      public String darBajaAlumno() {
+    /**
+     * Método que se encarga de llamar al método de la interfazDAO(implementado
+     * por el controladorDAO) que determina cuales son las imparticiones
+     * activas. Por último nos redigirá a "bajaAlumno.xhtml" para que solo se
+     * pueda dar de baja a los alumnos en imparticiones activas.
+     *
+     * @return bajaAlumno
+     */
+    public String darBajaAlumno() {
         lista = iDAO.imparticionesActivas();
         return "bajaAlumno";
     }
-    
+
     public List<Imparticion> getLista() {
         return lista;
     }

@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.util.List;
@@ -13,14 +12,15 @@ import persistencia.Usuario;
 @ManagedBean
 @SessionScoped
 public class Login {
-    @ManagedProperty("#{cDAO}")   
-    private InterfazDAO iDAO; 
+
+    @ManagedProperty("#{cDAO}")
+    private InterfazDAO iDAO;
     private String usuario;
     private String password;
-    private Usuario user;    
+    private Usuario user;
     private List<Imparticion> imparticionesActivas;
     private List<Matricula> listaMatriculadas;
-    
+
     public Login() {
     }
 
@@ -55,8 +55,8 @@ public class Login {
     public void setUser(Usuario user) {
         this.user = user;
     }
-       
-        public List<Imparticion> getImparticionesActivas() {
+
+    public List<Imparticion> getImparticionesActivas() {
         return imparticionesActivas;
     }
 
@@ -71,20 +71,29 @@ public class Login {
     public void setListaMatriculadas(List<Matricula> listaMatriculadas) {
         this.listaMatriculadas = listaMatriculadas;
     }
-    
-    public String validacionLogin(){
+
+    /**
+     * Método que recogerá los datos introducidos en "index.xhtml". Comprobará
+     * si el usuario que está intentando entrar está registrado o no. Si está
+     * registrado comprobará si es administrador o almuno
+     *
+     * @return ruta
+     */
+    public String validacionLogin() {
         String ruta;
-        user=iDAO.login(usuario, password);
-        if (user!=null) {
+        //Llamada al método login de la interfaz
+        user = iDAO.login(usuario, password);
+        if (user != null) {
             if (user.getRol().equals("admin")) {
-            imparticionesActivas = iDAO.imparticionesActivas();
-            ruta="menuAdmin";
+                imparticionesActivas = iDAO.imparticionesActivas();//Muestra los cursos activos
+                ruta = "menuAdmin";
             } else {
-            listaMatriculadas = iDAO.imparticionesAlumno(user.getDni());
-            ruta="menuAlumno";            
-            }            
+                //Muestra los cursos en los que un alumno está matrículado
+                listaMatriculadas = iDAO.imparticionesAlumno(user.getDni());
+                ruta = "menuAlumno";
+            }
         } else {
-        ruta=null;
+            ruta = null;
         }
         return ruta;
     }
