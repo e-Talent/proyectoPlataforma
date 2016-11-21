@@ -11,15 +11,16 @@
         </script>
     </h:head>
     <h:body>
-        <p:gmap center="37.869052,-4.181127" zoom="14" 
-                type="HYBRID" style="width:60%; height:300px" model="#{contacto.simpleModel}"/>
+        <p:panel header="Contacto">   
+            <h1>PUEDES ENCONTRAR NUESTRAS OFINAS EN LA SIGUENTE LOCALIZACIÓN</h1>
+            <p:gmap center="37.869052,-4.181127" zoom="14" 
+                    type="HYBRID" style="width:60%; height:300px" model="#{contacto.simpleModel}"/>
 
-        <h:form id="pollfrm1">
-            <p:outputLabel value="Fecha: "/>
-            <p:outputLabel id="tiempo" value="#{serverTimeBean.time}"/>
-            <p:poll interval="1" listener="#{serverTimeBean.updateTime()}" 
-                    update="tiempo"/>
-        </h:form>
+            <h:form id="pollfrm1">
+                <p:outputLabel id="tiempo" value="#{serverTimeBean.time}"/>
+                <p:poll interval="1" listener="#{serverTimeBean.updateTime()}" update="tiempo"/>
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

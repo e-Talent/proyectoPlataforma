@@ -18,7 +18,7 @@
                           value="jdbc:mysql://localhost:3306/plataformadb">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="R00t"></property>
+        <property name="password" value=""></property>
     </bean>
     
     <bean id="entityFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
