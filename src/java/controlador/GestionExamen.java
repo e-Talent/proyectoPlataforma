@@ -26,6 +26,7 @@ public class GestionExamen {
     private String urlTemario;
     private double nota;
     private String dni;
+    private boolean mostrarBoton;
 
     public GestionExamen() {
     }
@@ -37,7 +38,7 @@ public class GestionExamen {
      * @return
      */
     public String corregir() {
-        nota = 0;
+        nota = 0;       
         //PreguntaExamen es una clase del controlador, contiene un collection de
         //respuestas, un objeto de pregunta y un int de la respuesta(valueRespuesta)
         //PreguntasExamen es la lista que hemos declarado como atributo en esta clase.
@@ -50,9 +51,9 @@ public class GestionExamen {
         }
         System.out.println(nota);
         iDAO.ponerNota(dni, idImparticion, nota);
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getViewRoot().findComponent("j_idt5:grabarExamen").setRendered(false);
+        FacesContext context = FacesContext.getCurrentInstance();      
         context.addMessage(null, new FacesMessage("Examen realizado", "Su nota es: " + nota));
+        mostrarBoton = false;
         return null;
     }
 
@@ -67,6 +68,7 @@ public class GestionExamen {
      */
     public String cargar(String dni) {
         this.dni = dni;
+        mostrarBoton=true;
         Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
         if (matricula.getNota() != null) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -101,6 +103,8 @@ public class GestionExamen {
         return "temario";
     }
 
+    
+    
     public List<Examen> getPreguntas() {
         return preguntas;
     }
@@ -155,6 +159,14 @@ public class GestionExamen {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public boolean isMostrarBoton() {
+        return mostrarBoton;
+    }
+
+    public void setMostrarBoton(boolean mostrarBoton) {
+        this.mostrarBoton = mostrarBoton;
     }
 
 }
