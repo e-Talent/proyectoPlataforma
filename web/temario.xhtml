@@ -10,12 +10,9 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipalAlumno.xhtml">
             <ui:define name="content">
-                <object type="application/pdf" data="#{examen.urlTemario}" height="500px" width="75%" internalinstanceid="3">
-                    Your browser can't display pdf, <a href="#{cargarexamenmario}">click</a> to download pdf instead.
-                </object> 
-                <h:form>
-                <p:commandButton value="Volver" action="menuAlumno"/>
-                </h:form>
+                <object type="application/pdf" data="#{gestionExamen.urlTemario}" height="500px" width="75%" internalinstanceid="3">
+                    Your browser can't display pdf, <a href="#{gestionExamen.urlTemario}">click</a> to download pdf instead.
+                </object>     
             </ui:define>
         </ui:composition>
     </h:body>

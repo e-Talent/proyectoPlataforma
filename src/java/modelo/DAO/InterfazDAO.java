@@ -46,4 +46,9 @@ public interface InterfazDAO {
     
     public Matricula buscarMatricula(String dni, int idImparticion);
 
+    public void bajaAlumno (int idMatricula);
+    
+    public void crearExamen (String textoRespuesta1, String textoRespuesta2, String textoRespuesta3,
+            String textoRespuesta4, String textoPregunta, int respuestaCorrecta, int idImparticion);
+    
 }

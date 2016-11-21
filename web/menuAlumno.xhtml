@@ -11,18 +11,31 @@
     <h:body>     
         <ui:composition template="templates/plantillaPrincipalAlumno.xhtml">
             <ui:define name="content">
-        <p:panel header="Menu Alumno"> 
-            <h:form> 
-                <p:growl id="growlMenuAlumno" showDetail="true" sticky="true"/>
-                <p:selectOneRadio value="#{gestionExamen.idImparticion}">
-                    <f:selectItems var="matricula" value="#{login.listaMatriculadas}"
-                                   itemLabel="#{matricula.idImparticion.nombre}"
-                                   itemValue="#{matricula.idImparticion.idImparticion}"/>                                   
-                </p:selectOneRadio> 
-                <p:commandButton value="Ir a Examen" action="#{gestionExamen.cargar(login.user.dni)}" update="growlMenuAlumno"/>
-                <p:commandButton value="Ir a Temario" action="#{gestionExamen.temario()}"/>
-            </h:form>       
-        </p:panel>
+                <p:panel header="Menu Alumno">            
+                    <h:form>                         
+                        <p:dataTable var="matricula" value="#{login.listaMatriculadas}">
+                            <p:column headerText="Curso">
+                                <h:outputText value="#{matricula.idImparticion.nombre}" />
+                            </p:column>
+                            <p:column headerText="Fecha de Finalizacion">
+                                <h:outputText value="#{matricula.idImparticion.fechaFin}" />
+                            </p:column>                          
+                            <p:column headerText="Descripcion">
+                                <h:outputText value="#{matricula.idImparticion.idCurso.descripcion}" />
+                            </p:column>
+                            <p:column headerText="Temario">
+                                <p:commandButton value="Mostrar" action="#{gestionExamen.temario(matricula.idImparticion.idImparticion)}"/>   
+                            </p:column>
+                            <p:column headerText="Examen">
+                                <p:growl id="growlMenuAlumno" showDetail="true" sticky="true"/>
+                                <p:commandButton value="Realizar" action="#{gestionExamen.cargar(login.user.dni,matricula.idImparticion.idImparticion)}" update="growlMenuAlumno"/>
+                            </p:column>
+                            <p:column headerText="Nota">
+                                <h:outputText value="#{matricula.nota}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:panel>
             </ui:define>
         </ui:composition>
     </h:body>

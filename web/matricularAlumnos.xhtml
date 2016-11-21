@@ -10,17 +10,18 @@
     </h:head>
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
-            <ui:define name="content">
-                <p:panel header="Matricular Alumno"> 
-                    <h:form>
+            <ui:define name="content"> 
+                <h:form>
+                    <p:growl id="gMatricular" showDetail="true" sticky="true"/>
+                    <p:panel header="Matricular Alumno">                 
                         Inserta D.N.I.: <p:inputText id="dni" value="#{matricularAlumno.DNI}" size="9"/><br/>                     
                         <p:outputLabel for="curso" value="Selecciona un curso activo: " />
                         <p:selectOneListbox id="curso" value="#{matricularAlumno.idImparticion}">                        
                             <f:selectItems value="#{imparticionesActivas.lista}" var="imparticion" itemLabel="#{imparticion.nombre}" itemValue="#{imparticion.idImparticion}"/>                        
                         </p:selectOneListbox>
-                        <p:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" />
-                    </h:form>
-                </p:panel>
+                        <p:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" update="gMatricular"/>
+                    </p:panel>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

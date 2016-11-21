@@ -11,17 +11,17 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-                <p:panel header="Listado de Cursos">        
-                    <h:form> 
-                        <p:dataTable id="tablaBajaAlumnos" value="#{imparticionesActivas.lista}" var="imparticion">
-                            <p:column headerText="Curso">            
-                                <h:outputText value="#{imparticion.nombre}"/>   
-                                <ui:repeat value="#{imparticion.matriculaCollection}" var="alumno">
-                                    #{alumno.dni.nombre}
-                                </ui:repeat>
-                            </p:column>                      
-                        </p:dataTable> 
-                    </h:form>
+                <p:panel header="Listado de Cursos">      
+                    <p:dataTable id="tablaBajaAlumnos" value="#{imparticionesActivas.lista}" var="imparticion">
+                        <p:column headerText="Curso">            
+                            <h:outputText value="#{imparticion.nombre}"/>   
+                            <ui:repeat value="#{imparticion.matriculaCollection}" var="matricula">
+                                <h:form> 
+                                    <p:commandLink value="#{matricula.dni.nombre}" action="#{matricularAlumno.baja(matricula.idMatricula)}"/>                                   
+                                </h:form>
+                            </ui:repeat>
+                        </p:column>                      
+                    </p:dataTable> 
                 </p:panel>
             </ui:define>
         </ui:composition>

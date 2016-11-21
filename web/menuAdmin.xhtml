@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"          
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -10,8 +11,20 @@
     <h:body>       
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-               
-                </ui:define>
+                <p:panel header="Listado de Ediciones activas">  
+                    <p:dataTable value="#{login.imparticionesActivas}" var="curso">
+                        <p:column headerText="Edición">
+                            <h:outputText value="#{curso.nombre}" />
+                        </p:column>   
+                         <p:column headerText="Fecha de finalización">
+                             <h:outputText value="#{curso.fechaFin}" />
+                        </p:column> 
+                             <p:column headerText="Descripción">
+                                 <h:outputText value="#{curso.idCurso.descripcion}" />
+                        </p:column> 
+                    </p:dataTable>
+                </p:panel>
+            </ui:define>
         </ui:composition>
     </h:body>
 </html>

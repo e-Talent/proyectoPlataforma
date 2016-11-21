@@ -30,7 +30,7 @@ public class GestionExamen {
 
     public GestionExamen() {
     }
-
+  
     /**
      * Método que se encargará de la corrección de los exámenes. Controlará que
      * una vez puesta la nota no se pueda enviar de nuevo.
@@ -64,10 +64,12 @@ public class GestionExamen {
      * examen se recargará examen.xhtml
      *
      * @param dni
+     * @param idImparticion
      * @return examen
      */
-    public String cargar(String dni) {
+    public String cargar(String dni, int idImparticion) {
         this.dni = dni;
+        this.idImparticion=idImparticion;
         mostrarBoton=true;
         Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
         if (matricula.getNota() != null) {
@@ -94,9 +96,11 @@ public class GestionExamen {
      * Método que se encargará de recuperar el temario en .pdf y mostrarlo en
      * "temario.xhtml"
      *
+     * @param idImparticion
      * @return temario
      */
-    public String temario() {
+    public String temario(int idImparticion) {
+        this.idImparticion=idImparticion;
         Imparticion i = iDAO.buscarTemario(idImparticion);
         String nombre = i.getIdCurso().getDocumento();
         urlTemario = "resources/" + nombre;

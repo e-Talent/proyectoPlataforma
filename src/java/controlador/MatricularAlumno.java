@@ -1,10 +1,13 @@
 package controlador;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import modelo.DAO.InterfazDAO;
 import persistencia.Matricula;
+import persistencia.Usuario;
 
 @ManagedBean
 @RequestScoped
@@ -14,10 +17,39 @@ public class MatricularAlumno {
     private InterfazDAO iDAO;
     private int idImparticion;
     private String DNI;
-
+private int idMatricula;
     public MatricularAlumno() {
     }
 
+      /**
+     * Método con el que creamos un objeto matrícula y le introducimos el dni y
+     * el IdImparticion para despues agregarlo a la BD. La navegación nos
+     * llevará a "menuAdmin.xhtml"
+     *
+     * @return "menuAdmin"
+     */
+    public String matricular() {
+        Matricula m = new Matricula();
+        Usuario usuario = iDAO.buscarUsuarioDNI(DNI);
+        if (usuario != null) {
+        m.setDni(usuario);
+        m.setIdImparticion(iDAO.buscarImparticionID(idImparticion));
+        iDAO.persist(m);   
+        return "menuAdmin";
+        } else {
+        FacesContext context = FacesContext.getCurrentInstance();      
+        context.addMessage(null, new FacesMessage("Error", "El DNI introducido no se encuentra en la base de datos"));
+        return null;
+        }       
+       
+    }
+    
+    public String baja(int idMatricula) {
+    iDAO.bajaAlumno(idMatricula);
+    return "menuAdmin";
+    }
+    
+    
     public int getIdImparticion() {
         return idImparticion;
     }
@@ -42,19 +74,14 @@ public class MatricularAlumno {
         this.iDAO = iDAO;
     }
 
-    /**
-     * Método con el que creamos un objeto matrícula y le introducimos el dni y
-     * el IdImparticion para despues agregarlo a la BD. La navegación nos
-     * llevará a "menuAdmin.xhtml"
-     *
-     * @return "menuAdmin"
-     */
-    public String matricular() {
-        Matricula m = new Matricula();
-        m.setDni(iDAO.buscarUsuarioDNI(DNI));
-        m.setIdImparticion(iDAO.buscarImparticionID(idImparticion));
-        iDAO.persist(m);
-        return "menuAdmin";
+    public int getIdMatricula() {
+        return idMatricula;
     }
+
+    public void setIdMatricula(int idMatricula) {
+        this.idMatricula = idMatricula;
+    }
+
+  
 
 }

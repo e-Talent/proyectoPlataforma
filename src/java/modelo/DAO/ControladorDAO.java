@@ -15,6 +15,8 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import persistencia.Examen;
+import persistencia.Pregunta;
+import persistencia.Respuesta;
 
 @Component(value = "cDAO")
 public class ControladorDAO implements InterfazDAO {
@@ -22,7 +24,7 @@ public class ControladorDAO implements InterfazDAO {
     @PersistenceContext(name = "Proyecto_PlataformaPU")
     EntityManager em;
 
-    @Transactional()
+    @Transactional
     @Override
     /**
      * Método que guarda cualquier tipo de dato (objeto) en la bbdd.
@@ -242,7 +244,7 @@ public class ControladorDAO implements InterfazDAO {
      * @param idImparticion
      * @param nota
      */
-    @Transactional()
+    @Transactional
     @Override
     public void ponerNota(String dni, int idImparticion, double nota) {
         Matricula resultado = buscarMatricula(dni, idImparticion);
@@ -272,6 +274,58 @@ public class ControladorDAO implements InterfazDAO {
         //Obtenemos la mátricula que nos interesa con los parametros que hemos pasado
         Matricula resultado = (Matricula) query.getSingleResult();
         return resultado;
+    }
+
+    @Transactional
+    @Override
+    public void bajaAlumno(int idMatricula) {
+        //Matricula matricula = em.find(Matricula.class, idMatricula);        
+        //em.remove(matricula);
+        //System.out.println(matricula.getIdMatricula());
+        Query query = em.createNamedQuery("Matricula.borrarMatricula");
+        query.setParameter("idMatricula", idMatricula);
+        query.executeUpdate();
+    }
+
+    @Transactional
+    @Override
+    public void crearExamen(String textoRespuesta1, String textoRespuesta2, String textoRespuesta3, String textoRespuesta4, String textoPregunta, int respuestaCorrecta, int idImparticion) {
+        Imparticion imparticion = em.find(Imparticion.class, idImparticion);
+        Pregunta pregunta = new Pregunta();
+        pregunta.setEnunciado(textoPregunta);
+        em.persist(pregunta);
+        Respuesta respuesta1 = new Respuesta();
+        respuesta1.setRespuesta(textoRespuesta1);
+        respuesta1.setIdPregunta(pregunta);
+        em.persist(respuesta1);
+        if (respuestaCorrecta == 1) {
+            pregunta.setRespuestaCorrecta(respuesta1.getIdRespuesta());
+        }
+        Respuesta respuesta2 = new Respuesta();
+        respuesta2.setRespuesta(textoRespuesta2);
+        respuesta2.setIdPregunta(pregunta);
+        em.persist(respuesta2);
+        if (respuestaCorrecta == 2) {
+            pregunta.setRespuestaCorrecta(respuesta2.getIdRespuesta());
+        }
+        Respuesta respuesta3 = new Respuesta();
+        respuesta3.setRespuesta(textoRespuesta3);
+        respuesta3.setIdPregunta(pregunta);
+        em.persist(respuesta3);
+        if (respuestaCorrecta == 3) {
+            pregunta.setRespuestaCorrecta(respuesta3.getIdRespuesta());
+        }
+        Respuesta respuesta4 = new Respuesta();
+        respuesta4.setRespuesta(textoRespuesta4);
+        respuesta4.setIdPregunta(pregunta);
+        em.persist(respuesta4);
+        if (respuestaCorrecta == 4) {
+            pregunta.setRespuestaCorrecta(respuesta4.getIdRespuesta());
+        }
+        Examen examen = new Examen();
+        examen.setIdImparticion(imparticion);
+        examen.setIdPregunta(pregunta);
+        em.persist(examen);
     }
 
 }

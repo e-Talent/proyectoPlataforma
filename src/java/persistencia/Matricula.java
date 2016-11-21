@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Matricula.findAll", query = "SELECT m FROM Matricula m"),
+    @NamedQuery(name = "Matricula.borrarMatricula", query = "DELETE FROM Matricula m WHERE m.idMatricula = :idMatricula"),
     @NamedQuery(name = "Matricula.findByIdMatricula", query = "SELECT m FROM Matricula m WHERE m.idMatricula = :idMatricula"),
     @NamedQuery(name = "Matricula.ponerNota", query = "SELECT m FROM Matricula m WHERE m.dni = :dni AND m.idImparticion = :idImparticion"),
     @NamedQuery(name = "Matricula.findByNota", query = "SELECT m FROM Matricula m WHERE m.nota = :nota")})
