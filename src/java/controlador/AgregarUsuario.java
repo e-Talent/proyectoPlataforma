@@ -31,7 +31,7 @@ public class AgregarUsuario {
     private String email;
     private String rol;
     private UploadedFile foto;
-    private String destination = "C:\\temporal\\";
+    private String destination = "C:\\NeatBean\\plataformaCursos\\web\\resources\\";
     
     public AgregarUsuario() {
     }
@@ -170,7 +170,7 @@ public class AgregarUsuario {
         u.setTelefono(telefono);
         u.setEmail(email);
         u.setRol(rol);        
-        u.setFoto(foto.getFileName());
+        u.setFoto("resurces/"+foto.getFileName());
         try {
             guardarFoto(foto.getFileName(), foto.getInputstream());
         } catch (IOException e) {

@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import modelo.DAO.Email;
 import modelo.DAO.InterfazDAO;
 import persistencia.Imparticion;
 import persistencia.Matricula;
@@ -43,8 +44,7 @@ public class Login {
         FacesContext context = FacesContext.getCurrentInstance();
         if (user != null) {
             if (user.getRol().equals("admin")) {
-                imparticionesActivas = iDAO.imparticionesActivas();//Muestra los cursos activos
-                //iDAO.crearExamen("TextoRespuesta1", "TextoRespuesta2", "TextoRespuesta3", "TextoRespuesta4", "Texto Pregunta", 4, 12);
+                imparticionesActivas = iDAO.imparticionesActivas();//Muestra los cursos activos              
                 ruta = "menuAdmin";
             } else {
                 //Muestra los cursos en los que un alumno está matrículado

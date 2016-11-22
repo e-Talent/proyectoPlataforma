@@ -45,6 +45,8 @@ public interface InterfazDAO {
     public void ponerNota(String dni, int idImparticion, double nota);
     
     public Matricula buscarMatricula(String dni, int idImparticion);
+    
+    public Matricula buscarMatricula(int idMatricula);
 
     public void bajaAlumno (int idMatricula);
     

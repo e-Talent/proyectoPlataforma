@@ -6,6 +6,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import modelo.DAO.InterfazDAO;
+import modelo.DAO.InterfazEmail;
+import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
 
@@ -15,13 +17,16 @@ public class MatricularAlumno {
 
     @ManagedProperty("#{cDAO}")
     private InterfazDAO iDAO;
+    @ManagedProperty("#{email}")
+    private InterfazEmail email;
     private int idImparticion;
     private String DNI;
-private int idMatricula;
+    private int idMatricula;
+
     public MatricularAlumno() {
     }
 
-      /**
+    /**
      * Método con el que creamos un objeto matrícula y le introducimos el dni y
      * el IdImparticion para despues agregarlo a la BD. La navegación nos
      * llevará a "menuAdmin.xhtml"
@@ -29,27 +34,34 @@ private int idMatricula;
      * @return "menuAdmin"
      */
     public String matricular() {
-        Matricula m = new Matricula();
+        Matricula m = new Matricula();      
         Usuario usuario = iDAO.buscarUsuarioDNI(DNI);
         if (usuario != null) {
-        m.setDni(usuario);
-        m.setIdImparticion(iDAO.buscarImparticionID(idImparticion));
-        iDAO.persist(m);   
-        return "menuAdmin";
+            m.setDni(usuario);
+            Imparticion i = iDAO.buscarImparticionID(idImparticion);
+            m.setIdImparticion(i);
+            iDAO.persist(m);
+            email.matricula(usuario.getEmail(),usuario.getNombre(),i.getNombre());
+            return "menuAdmin";
         } else {
-        FacesContext context = FacesContext.getCurrentInstance();      
-        context.addMessage(null, new FacesMessage("Error", "El DNI introducido no se encuentra en la base de datos"));
-        return null;
-        }       
-       
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Error", "El DNI introducido no se encuentra en la base de datos"));
+            return null;
+        }
     }
+
     
-    public String baja(int idMatricula) {
-    iDAO.bajaAlumno(idMatricula);
-    return "menuAdmin";
+    
+    public String baja(int idMatricula) {       
+        Matricula matricula = iDAO.buscarMatricula(idMatricula);
+        iDAO.bajaAlumno(idMatricula);        
+        String nombre = matricula.getDni().getNombre();
+        String curso = matricula.getIdImparticion().getNombre();
+        String destinatario = matricula.getDni().getEmail();
+        email.baja(destinatario, nombre, curso);
+        return "menuAdmin";
     }
-    
-    
+
     public int getIdImparticion() {
         return idImparticion;
     }
@@ -82,6 +94,12 @@ private int idMatricula;
         this.idMatricula = idMatricula;
     }
 
-  
+    public InterfazEmail getEmail() {
+        return email;
+    }
+
+    public void setEmail(InterfazEmail email) {
+        this.email = email;
+    }
 
 }

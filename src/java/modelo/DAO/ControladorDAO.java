@@ -328,4 +328,10 @@ public class ControladorDAO implements InterfazDAO {
         em.persist(examen);
     }
 
+    @Override
+    public Matricula buscarMatricula(int idMatricula) {
+    Matricula m = em.find(Matricula.class, idMatricula);  
+    return m;
+    }
+
 }
