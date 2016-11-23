@@ -22,7 +22,7 @@ public class CrearExamen {
     private String textoRespuesta4;
     private String textoPregunta;
     private int respuestaCorrecta;
-    private int idImparticion=18;
+    private int idImparticion;
 
     public CrearExamen() {
 

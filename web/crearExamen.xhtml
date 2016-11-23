@@ -11,14 +11,14 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-                <p:panel header="Generar pregunta">  
+                <p:panel header="Generar pregunta" styleClass="panel">  
                     <h:form>
                         <p:growl showDetail="true"/>
                         <h:panelGrid columns="2" cellpadding="5">
-                             <h:outputLabel value="Selecciona la edicion: " for="seleccionImpaticion"/>
-                             <h:selectOneMenu id="seleccionImparticion" value="#{crearExamen.idImparticion}" label="opcion">
-                                 <f:selectItems value="#{login.imparticionesActivas}" var="i" itemLabel="#{i.nombre}" itemValue="1"/>                             
-                            </h:selectOneMenu>
+                             <h:outputLabel value="Selecciona la edicion: " for="seleccionImparticion"/>
+                             <p:selectOneMenu id="seleccionImparticion" value="#{crearExamen.idImparticion}" label="opcion">
+                                 <f:selectItems value="#{login.imparticionesActivas}" var="i" itemLabel="#{i.nombre}" itemValue="#{i.idImparticion}"/>                             
+                            </p:selectOneMenu>                          
                             <h:outputLabel value="Pregunta: " for="pregunta"/>
                             <p:inputTextarea id="pregunta" value="#{crearExamen.textoPregunta}" required="true">
                             <f:validateLength minimum="5" maximum="255" /></p:inputTextarea>
@@ -43,10 +43,10 @@
                             </h:selectOneMenu>
                         </h:panelGrid>
                         <p:separator/>
-                        <h:panelGrid columns="2" cellpadding="5">                     
-                            <p:commandButton value="Añadir otra pregunta" action="#{crearExamen.preguntaSiguiente()}"/>
-                            <p:commandButton value="Guardar y terminar examen" action="#{crearExamen.crearExamen()}"/>
-                        </h:panelGrid>
+                                            
+                            <p:commandButton value="Añadir otra pregunta" action="#{crearExamen.preguntaSiguiente()}" ajax="false"/>
+                            <p:commandButton value="Guardar y terminar examen" action="#{crearExamen.crearExamen()}" ajax="false"/>
+                     
                         <p/>
 
                     </h:form>

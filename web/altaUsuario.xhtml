@@ -11,7 +11,7 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-                <p:panel header="Alta de Usuario">  
+                <p:panel header="Alta de Usuario" styleClass="panel">  
                     <h:form enctype="multipart/form-data">
                         <p:growl showDetail="true"/>
                         <h:panelGrid columns="4" cellspacing="5">
@@ -26,13 +26,17 @@
                                 <f:validateLength minimum="3" maximum="45" /> </p:inputText>
                             <h:outputLabel value="Teléfono: " for="telefonoUsuario"/>
                             <p:inputText id="telefonoUsuaio" value="#{agregarUsuario.telefono}" required="true">
-                            <f:validateRegex pattern="^(0034|\+34)?(\d\d\d)-? ?(\d\d)-? ?(\d)-? ?(\d)-? ?(\d\d)$"/></p:inputText>
+                                <f:validateRegex pattern="^(0034|\+34)?(\d\d\d)-? ?(\d\d)-? ?(\d)-? ?(\d)-? ?(\d\d)$"/></p:inputText>
                             <h:outputLabel value="Email " for="emailUsuario"/>
                             <p:inputText id="emailUsuario" value="#{agregarUsuario.email}" required="true">
-                             <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"/></p:inputText> 
+                                <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"/></p:inputText> 
                             <h:outputLabel value="Rol: " for="rolUsuario"/>
-                            <p:inputText id="rolUsuario" value="#{agregarUsuario.rol}" required="true">
-                            </p:inputText>
+
+                            <h:selectOneMenu id="rolUsuario" value="#{agregarUsuario.rol}" required="true" label="opcion">
+                                <f:selectItem itemLabel="Admin" itemValue="admin"/>
+                                <f:selectItem itemLabel="Alumno" itemValue="alumno"/>
+                            </h:selectOneMenu>
+
                             <h:outputLabel value="Usuario: " for="user"/>
                             <p:inputText id="user" value="#{agregarUsuario.usuario}" required="true">
                                 <f:validateLength minimum="3" maximum="25" /></p:inputText>
@@ -47,8 +51,8 @@
                             <p:fileUpload value="#{agregarUsuario.foto}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>          
                         </h:panelGrid>
                         <br/>
-                        <p:commandButton value="Guardar Nuevo Usuario" actionListener="#{agregarUsuario.guardarUsuario()}" ajax="false"/>
-                   <p/>
+                        <p:commandButton value="Guardar Nuevo Usuario" action="#{agregarUsuario.guardarUsuario()}" ajax="false"/>
+                        <p/>
                     </h:form>
                 </p:panel>
             </ui:define>

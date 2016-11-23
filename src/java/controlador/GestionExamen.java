@@ -30,7 +30,7 @@ public class GestionExamen {
 
     public GestionExamen() {
     }
-  
+
     /**
      * Método que se encargará de la corrección de los exámenes. Controlará que
      * una vez puesta la nota no se pueda enviar de nuevo.
@@ -38,7 +38,9 @@ public class GestionExamen {
      * @return
      */
     public String corregir() {
-        nota = 0;       
+        nota = 0;
+        int incrementoNota;
+        incrementoNota = 10 / preguntas.size();
         //PreguntaExamen es una clase del controlador, contiene un collection de
         //respuestas, un objeto de pregunta y un int de la respuesta(valueRespuesta)
         //PreguntasExamen es la lista que hemos declarado como atributo en esta clase.
@@ -46,12 +48,12 @@ public class GestionExamen {
             //Comparamos la respuesta introducida con la correcta
             if (pe.getValueRespuesta() == pe.getPregunta().getRespuestaCorrecta()) {
                 //Si existe coincidencia sumamos dos puntos
-                nota += 2;
+                nota += incrementoNota;
             }
         }
         System.out.println(nota);
         iDAO.ponerNota(dni, idImparticion, nota);
-        FacesContext context = FacesContext.getCurrentInstance();      
+        FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Examen realizado", "Su nota es: " + nota));
         mostrarBoton = false;
         return null;
@@ -69,8 +71,8 @@ public class GestionExamen {
      */
     public String cargar(String dni, int idImparticion) {
         this.dni = dni;
-        this.idImparticion=idImparticion;
-        mostrarBoton=true;
+        this.idImparticion = idImparticion;
+        mostrarBoton = true;
         Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
         if (matricula.getNota() != null) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -80,15 +82,21 @@ public class GestionExamen {
         } else {
             preguntasExamen = new ArrayList<>();
             preguntas = iDAO.cargarExamen(idImparticion);
-            for (Examen p : preguntas) {
-                PreguntaExamen pe = new PreguntaExamen();
-                Collection respuestas = p.getIdPregunta().getRespuestaCollection();
-                Pregunta pregunta = p.getIdPregunta();
-                pe.setPregunta(pregunta);
-                pe.setRespuestas(respuestas);
-                preguntasExamen.add(pe);
+            if (preguntas.isEmpty()) {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Examen no disponible", "No existe examen disponible del curso: " + matricula.getIdImparticion().getNombre()));
+                return null;
+            } else {
+                for (Examen p : preguntas) {
+                    PreguntaExamen pe = new PreguntaExamen();
+                    Collection respuestas = p.getIdPregunta().getRespuestaCollection();
+                    Pregunta pregunta = p.getIdPregunta();
+                    pe.setPregunta(pregunta);
+                    pe.setRespuestas(respuestas);
+                    preguntasExamen.add(pe);
+                }
+                return "examen";
             }
-            return "examen";
         }
     }
 
@@ -100,15 +108,13 @@ public class GestionExamen {
      * @return temario
      */
     public String temario(int idImparticion) {
-        this.idImparticion=idImparticion;
+        this.idImparticion = idImparticion;
         Imparticion i = iDAO.buscarTemario(idImparticion);
         String nombre = i.getIdCurso().getDocumento();
         urlTemario = "resources/" + nombre;
         return "temario";
     }
 
-    
-    
     public List<Examen> getPreguntas() {
         return preguntas;
     }

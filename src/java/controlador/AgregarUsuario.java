@@ -18,10 +18,10 @@ import persistencia.Usuario;
 @ManagedBean
 @RequestScoped
 public class AgregarUsuario {
-    
+
     @ManagedProperty("#{cDAO}")
     private InterfazDAO iDAO;
-    
+
     private String dni;
     private String nombre;
     private String apellido;
@@ -31,91 +31,91 @@ public class AgregarUsuario {
     private String email;
     private String rol;
     private UploadedFile foto;
-    private String destination = "C:\\NeatBean\\plataformaCursos\\web\\resources\\";
-    
+    private String destination = "C:\\NeatBean\\proyectoPlataforma\\web\\resources\\";
+
     public AgregarUsuario() {
     }
-    
+
     public String getDni() {
         return dni;
     }
-    
+
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public String getApellido() {
         return apellido;
     }
-    
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
+
     public String getUsuario() {
         return usuario;
     }
-    
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getTelefono() {
         return telefono;
     }
-    
+
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getRol() {
         return rol;
     }
-    
+
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
+
     public UploadedFile getFoto() {
         return foto;
     }
-    
+
     public void setFoto(UploadedFile foto) {
         this.foto = foto;
     }
-    
+
     public InterfazDAO getiDAO() {
         return iDAO;
     }
-    
+
     public void setiDAO(InterfazDAO iDAO) {
         this.iDAO = iDAO;
     }
-    
+
     public byte[] prepararArchivo() {
         byte[] fotoBytes = null;
         try {
@@ -125,22 +125,23 @@ public class AgregarUsuario {
         }
         return fotoBytes;
     }
-    
-     /**
+
+    /**
      * Método que recibe el nombre del archivo y el archivo en bytes y lo guarda
      * en la ruta indicada (guardamos bytes).
+     *
      * @param fileName
      * @param in
      */
     public void guardarFoto(String fileName, InputStream in) {
-        
+
         try {
             // write the inputStream to a FileOutputStream
             OutputStream out = new FileOutputStream(new File(destination + fileName));
-            
+
             int read = 0;
             byte[] bytes = new byte[1024];
-            
+
             while ((read = in.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
@@ -152,10 +153,12 @@ public class AgregarUsuario {
             System.out.println(e.getMessage());
         }
     }
-     /**
+
+    /**
      * Metodo que se encarga de crear un nuevo objeto usuario y añadirle los
-     * valores recibidos desde "altaUsuario.xhtml". Una vez creado el objeto se 
+     * valores recibidos desde "altaUsuario.xhtml". Una vez creado el objeto se
      * guarda en la base de datos y se nos dirigirá a index.xhtml
+     *
      * @return index
      */
     public String guardarUsuario() {
@@ -169,17 +172,16 @@ public class AgregarUsuario {
         u.setPassword(password);
         u.setTelefono(telefono);
         u.setEmail(email);
-        u.setRol(rol);        
-        u.setFoto("resurces/"+foto.getFileName());
+        u.setRol(rol);
+        u.setFoto("resources/" + foto.getFileName());
         try {
             guardarFoto(foto.getFileName(), foto.getInputstream());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //A través de este método de la interfaz, mandamos los datos a la bbdd.
         iDAO.persist(u);
         return "index";
     }
-    
+
 }

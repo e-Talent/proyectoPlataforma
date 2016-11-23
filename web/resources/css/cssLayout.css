@@ -1,3 +1,6 @@
+body {
+background-color: #dddddd;    
+}
 
 #top {
     position: relative;
@@ -60,7 +63,7 @@
 
 
 #logo{
-    float: top;
+    float: right;
     background-color: #ece3a5;
     width: 100px; 
     height: 100px;
@@ -117,14 +120,14 @@ center{
 }
 
 .intro{
-    font-size: 30px;
-    text-decoration: none;
-    color:#ffd450;
+    font-size: 25px; 
+    color:#ffd450 ;
     padding-right:40px;
 }
 
 #tituloIntro{
-    font-size:50px;
+    font-size:40px;
+    font-family: 'Exo', sans-serif;
     padding:5px;
 }
 
@@ -132,16 +135,35 @@ center{
     text-align: center;
     position: absolute;
     top: calc(40% - 80px);
-    left: calc(35% - 270px);
+    left: calc(38% - 270px);
     z-index: 2;
 }
 
 #top a:link, #top a:visited {
-  color: white; 
-  text-decoration: none;
+    color: white; 
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;  
-  text-decoration : underline;
+    color: black;  
+    text-decoration : underline;
 }
+
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.panel {
+    background-image: none;
+    border-style: none;
+}
+
+.ui-widget-content {
+    background-image: none;
+    background-color: #4d4d4d;
+}
+

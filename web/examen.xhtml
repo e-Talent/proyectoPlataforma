@@ -10,23 +10,25 @@
     </h:head>
     <h:body>
 
-        <ui:composition template="templates/plantillaPrincipalAlumno.xhtml">
+        <ui:composition template="templates/plantillaExamen.xhtml">
             <ui:define name="content">
                 <h:form> 
-                    <p:growl id="growlExamen" showDetail="true" sticky="true"/>
-                    <p:panel>  
-                        <h:dataTable value="#{gestionExamen.preguntasExamen}" var="pe">
-                            <h:column>                   
-                                <p:panel header="#{pe.pregunta.enunciado}"> 
-                                    <p:selectOneRadio value="#{pe.valueRespuesta}" layout="grid" columns="2">
-                                        <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
-                                    </p:selectOneRadio>
-                                </p:panel>
-                            </h:column>
-                        </h:dataTable>
-                        <p:commandButton id="grabarExamen" value="Grabar Examen" actionListener="#{gestionExamen.corregir}" update="growlExamen"  rendered="#{gestionExamen.mostrarBoton}"/>
-                        <p:commandButton value="Volver" action="index"/>
-                    </p:panel>
+                    <p:growl id="growlExamen" showDetail="true"/>
+                    <center>
+                        <p:panel styleClass="panel">  
+                            <h:dataTable value="#{gestionExamen.preguntasExamen}" var="pe">
+                                <h:column>                   
+                                    <p:panel header="#{pe.pregunta.enunciado}"> 
+                                        <p:selectOneRadio value="#{pe.valueRespuesta}" layout="grid" columns="4">
+                                            <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
+                                        </p:selectOneRadio>
+                                    </p:panel>
+                                </h:column>
+                            </h:dataTable>
+                            <p:commandButton id="grabarExamen" value="Evaluar" actionListener="#{gestionExamen.corregir}" update="growlExamen"  styleClass="#{gestionExamen.mostrarBoton?'show':'hide'}" ajax="false"/>
+                            <p:commandButton value="Volver" action="menuAlumno"  styleClass="#{gestionExamen.mostrarBoton?'hide':'show'}"/>
+                        </p:panel>
+                    </center>
                 </h:form>  
             </ui:define>
         </ui:composition>

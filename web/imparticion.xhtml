@@ -11,7 +11,7 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-                <p:panel header="Selecciona un Curso"> 
+                <p:panel header="Selecciona un Curso" styleClass="panel"> 
                      <br/>
                     <h:form>    
                         <p:panelGrid columns="2">
@@ -22,11 +22,11 @@
                             </p:selectOneListbox> 
                             <p:panelGrid columns="1">
                                 <p:outputLabel for="popup" value="Fecha de Inicio: " />
-                                <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" />
+                                <p:calendar id="popup" value="#{agregarImparticion.fechaInicio}" required="true"/>
                                 <p:outputLabel for="popup" value="Fecha de finalización: " />
-                                <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" />
+                                <p:calendar id="popup2" value="#{agregarImparticion.fechaFin}" required="true"/>
                                 <h:outputLabel value="Nombre de la edición: " for="nombreEdicion"/>
-                                <p:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}">
+                                <p:inputText id="nombreEdicion" value="#{agregarImparticion.nombre}" required="true">
                                     <f:validateLength minimum="3" maximum="45"/></p:inputText>                              
                             </p:panelGrid>
                         </p:panelGrid>

@@ -13,17 +13,22 @@
             <ui:define name="content"> 
                 <h:form>
                     <p:growl id="gMatricular" showDetail="true" sticky="true"/>
-                    <p:panel header="Matricular Alumno">                 
-                        Inserta D.N.I.: <p:inputText id="dni" value="#{matricularAlumno.DNI}" size="9">
+                    <center>
+                    <p:panel header="Matricular Alumno" styleClass="panel">
+                        <br/><br/> 
+                        <p:outputLabel for="dni" value="Inserta DNI: " />
+                         <p:inputText id="dni" value="#{matricularAlumno.DNI}" size="9">
                             <f:validateRegex pattern="([0-9]{8})([A-Z])"/></p:inputText>                        
-                        <br/>                     
+                        <br/><br/>              
                         <p:outputLabel for="curso" value="Selecciona un curso activo: " />
                         
                         <p:selectOneListbox id="curso" value="#{matricularAlumno.idImparticion}">                        
                             <f:selectItems value="#{imparticionesActivas.lista}" var="imparticion" itemLabel="#{imparticion.nombre}" itemValue="#{imparticion.idImparticion}"/>                        
                         </p:selectOneListbox>
+                        <br/><br/> 
                         <p:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" update="gMatricular"/>
                     </p:panel>
+                    </center>
                 </h:form>
             </ui:define>
         </ui:composition>

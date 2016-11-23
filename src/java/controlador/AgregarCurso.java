@@ -25,7 +25,7 @@ public class AgregarCurso {
     private String nombre;
     private String descripcion;
     private UploadedFile temario;
-    private String destination = "C:\\NeatBean\\plataformaCursos\\web\\resources\\";
+    private String destination = "C:\\NeatBean\\proyectoPlataforma\\web\\resources\\";
 
     public AgregarCurso() {
     }
@@ -93,7 +93,7 @@ public class AgregarCurso {
         }
         //A través de este método de la interfaz iDAO, mandamos los datos a la bbdd.
         iDAO.persist(c);
-        return "imparticion";
+        return "menuAdmin";
     }
 
     /**

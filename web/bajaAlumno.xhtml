@@ -11,13 +11,16 @@
     <h:body>
         <ui:composition template="templates/plantillaPrincipal.xhtml">
             <ui:define name="content">
-                <p:panel header="Listado de Cursos">      
+                <p:panel header="Listado de Cursos" styleClass="panel">      
                     <p:dataTable id="tablaBajaAlumnos" value="#{imparticionesActivas.lista}" var="imparticion">
                         <p:column headerText="Curso">            
                             <h:outputText value="#{imparticion.nombre}"/>   
                             <ui:repeat value="#{imparticion.matriculaCollection}" var="matricula">
-                                <h:form> 
-                                    <p:commandLink value="#{matricula.dni.nombre}" action="#{matricularAlumno.baja(matricula.idMatricula)}"/>                                   
+                                <h:form>
+                                    <p:panelGrid columns="2">
+                                        <h:outputText value="#{matricula.dni.nombre}"/> 
+                                        <p:commandButton value="Dar de baja" action="#{matricularAlumno.baja(matricula.idMatricula)}"/>                                   
+                                    </p:panelGrid>
                                 </h:form>
                             </ui:repeat>
                         </p:column>                      

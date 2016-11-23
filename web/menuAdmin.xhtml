@@ -13,7 +13,7 @@
             <ui:define name="content">
                 <p:panel header="Listado de Ediciones activas">  
                     <p:dataTable value="#{login.imparticionesActivas}" var="curso">
-                        <p:column headerText="Edición">
+                        <p:column headerText="Edición" styleClass="sinFondo">
                             <h:outputText value="#{curso.nombre}" />
                         </p:column>   
                          <p:column headerText="Fecha de finalización">
