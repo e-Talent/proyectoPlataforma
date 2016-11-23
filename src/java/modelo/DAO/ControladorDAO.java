@@ -287,18 +287,32 @@ public class ControladorDAO implements InterfazDAO {
         query.executeUpdate();
     }
 
+    /**
+     * Método con el que creamos exámenes para una determinada impartición.
+     *
+     * @param textoRespuesta1
+     * @param textoRespuesta2
+     * @param textoRespuesta3
+     * @param textoRespuesta4
+     * @param textoPregunta
+     * @param respuestaCorrecta
+     * @param idImparticion
+     */
     @Transactional
     @Override
     public void crearExamen(String textoRespuesta1, String textoRespuesta2, String textoRespuesta3, String textoRespuesta4, String textoPregunta, int respuestaCorrecta, int idImparticion) {
+        //Creamos un objeto impartición que coincidirá con el pasado con la idImpartición
         Imparticion imparticion = em.find(Imparticion.class, idImparticion);
-        Pregunta pregunta = new Pregunta();
-        pregunta.setEnunciado(textoPregunta);
-        em.persist(pregunta);
+        Pregunta pregunta = new Pregunta(); //Creamos un objeto pregunta vacio
+        pregunta.setEnunciado(textoPregunta); //Añadimos el enunciado al objeto anterior
+        em.persist(pregunta);//Guardamos los datos en la base de datos
+        //Creamos varios objetos respuesta
         Respuesta respuesta1 = new Respuesta();
         respuesta1.setRespuesta(textoRespuesta1);
         respuesta1.setIdPregunta(pregunta);
         em.persist(respuesta1);
         if (respuestaCorrecta == 1) {
+            //Cogemos la idRespuesta que necesitamos para la respuestaa
             pregunta.setRespuestaCorrecta(respuesta1.getIdRespuesta());
         }
         Respuesta respuesta2 = new Respuesta();
@@ -322,16 +336,21 @@ public class ControladorDAO implements InterfazDAO {
         if (respuestaCorrecta == 4) {
             pregunta.setRespuestaCorrecta(respuesta4.getIdRespuesta());
         }
-        Examen examen = new Examen();
-        examen.setIdImparticion(imparticion);
-        examen.setIdPregunta(pregunta);
+        Examen examen = new Examen(); //Creamo un objeto exámen
+        examen.setIdImparticion(imparticion); //Añadimos el exámen a una idImpartición
+        examen.setIdPregunta(pregunta); //Añadimos el exámen a una idPregunta
         em.persist(examen);
     }
 
+    /**
+     * Buscamos el objeto matrícula que coincida con el parámetro pasado (idMatricula)
+     * @param idMatricula
+     * @return matricula
+     */
     @Override
     public Matricula buscarMatricula(int idMatricula) {
-    Matricula m = em.find(Matricula.class, idMatricula);  
-    return m;
+        Matricula m = em.find(Matricula.class, idMatricula);
+        return m;
     }
 
 }

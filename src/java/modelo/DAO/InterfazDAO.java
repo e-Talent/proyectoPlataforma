@@ -8,8 +8,9 @@ import java.util.List;
 import persistencia.Examen;
 
 /**
- * La interfaz contendrá la declaración de todos los métodos que se implementarán
- * en en el controlador.
+ * La interfaz contendrá la declaración de todos los métodos que se
+ * implementarán en en el controlador.
+ *
  * @author Talentum Java
  */
 public interface InterfazDAO {
@@ -43,14 +44,14 @@ public interface InterfazDAO {
     public Imparticion buscarTemario(int idImparticion);
 
     public void ponerNota(String dni, int idImparticion, double nota);
-    
+
     public Matricula buscarMatricula(String dni, int idImparticion);
     
     public Matricula buscarMatricula(int idMatricula);
 
-    public void bajaAlumno (int idMatricula);
-    
-    public void crearExamen (String textoRespuesta1, String textoRespuesta2, String textoRespuesta3,
+    public void bajaAlumno(int idMatricula);
+
+    public void crearExamen(String textoRespuesta1, String textoRespuesta2, String textoRespuesta3,
             String textoRespuesta4, String textoPregunta, int respuestaCorrecta, int idImparticion);
-    
+
 }

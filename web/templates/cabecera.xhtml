@@ -6,11 +6,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
-        <ui:composition>           
+        <ui:composition>
+
+           
             <p:graphicImage url="resources/banner2.png" id="bannerAd" ></p:graphicImage>
             <p:panel>
                 <h:form>
-                    <p:menubar>
+                    <p:menubar style="font: white">
                         <p:submenu label="Cursos">
                             <p:menuitem value="Alta de cursos" action="altaCurso" ajax="false" icon="ui-icon-document"></p:menuitem>
                             <p:menuitem value="Impartición de cursos" action="#{listaCursos.listarCursos()}" ajax="false" icon="ui-icon-calendar"></p:menuitem>
@@ -24,7 +26,7 @@
                             <p:menuitem value="Alta de usuarios" action="altaUsuario" ajax="false" icon="ui-icon-person"></p:menuitem>
                             <p:menuitem value="Baja de usuarios" action="bajaUsuario" ajax="false" icon="ui-icon-person"></p:menuitem>
                         </p:submenu>
-                        <p:menuitem value="Quit" action="index" icon="ui-icon-close" />
+                        <p:menuitem value="Salir" action="index" icon="ui-icon-close" />
                         <f:facet name="options">
                             Cursos: <p:inputText value="#{listaCursos.nombre}"/> 
                             <p:commandButton value="Buscar" action="#{listaCursos.buscador()}"  icon="ui-icon-search"/>                            

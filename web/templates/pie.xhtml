@@ -5,10 +5,17 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <body>
-        <ui:composition>
+         <ui:composition>
             <p:graphicImage url="resources/creativeCommons.png" id="imagenPie"></p:graphicImage> 
-            <h:link value="Contacta con los desarrolladores" outcome="nuestrosAutores" id="contacto"> </h:link>
-            <!-- <h:outputLabel id="contacto">Dirección  |  Teléfono  |Fax  | email@email.com  </h:outputLabel> -->
+            <p:graphicImage url="resources/logo.jpg" id="logoPie" ></p:graphicImage> 
+            <center>
+                <h:link value="Desarrolladores" outcome="nuestrosAutores" class="contactoD"> </h:link>
+                <h:link value="talentumjava@gmail.com" class="contactoD"> </h:link>
+                <h:link value="e-Talent" outcome="intro" class="contactoD"> </h:link>
+                <h:link value="Localización" outcome="contacto" class="contactoD"> </h:link>
+                <h:link value="Sara inventora" class="contactoD"> </h:link>
+            </center>
+
         </ui:composition>
 
     </body>

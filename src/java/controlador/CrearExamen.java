@@ -7,6 +7,11 @@ import modelo.DAO.InterfazDAO;
 
 @ManagedBean
 @RequestScoped
+/**
+ * Clase que de desarrolla la funcionalidad para crear un nuevo exámen.
+ * Necesita cuatro objetos respuesta, un objeto pregunta, un int de la respuesta 
+ * correcta y un int de a id de imparción.
+ */
 public class CrearExamen {
 
     @ManagedProperty("#{cDAO}")
@@ -87,6 +92,11 @@ public class CrearExamen {
         this.iDAO = iDAO;
     }
 
+    /**
+     * Método para borrar los datos del formuario de creación de exámen una vez
+     * que ha sido guardado en la base de datos.
+     * @return null
+     */
     public String preguntaSiguiente() {
     iDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);    
     textoRespuesta1=null;
@@ -96,7 +106,10 @@ public class CrearExamen {
     textoPregunta=null;    
     return null;   
     }
-    
+    /**
+     * Método que llama al método de la interfaz y le pasa los parámetros
+     * @return menuAdmin
+     */
     public String crearExamen() {
         iDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);
         return "menuAdmin";

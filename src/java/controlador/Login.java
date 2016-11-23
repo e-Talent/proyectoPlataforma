@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import modelo.DAO.Email;
 import modelo.DAO.InterfazDAO;
 import persistencia.Imparticion;
 import persistencia.Matricula;
@@ -26,6 +25,8 @@ public class Login {
     private Usuario user;
     private List<Imparticion> imparticionesActivas;
     private List<Matricula> listaMatriculadas;
+    private SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+    private Date fechaActual = null;
 
     public Login() {
     }
@@ -40,6 +41,11 @@ public class Login {
     public String validacionLogin() {
         String ruta;
         //Llamada al método login de la interfaz
+        try {
+            fechaActual = sd.parse(sd.format(new Date()));
+        } catch (ParseException ex) {
+            ex.getMessage();
+        }
         user = iDAO.login(usuario, password);
         FacesContext context = FacesContext.getCurrentInstance();
         if (user != null) {
@@ -50,18 +56,11 @@ public class Login {
                 //Muestra los cursos en los que un alumno está matrículado
                 listaMatriculadas = iDAO.imparticionesAlumno(user.getDni());
                 for (Matricula matricula : listaMatriculadas) {
-                    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-                    Date fechaActual = null;
-                    try {
-                        fechaActual = sd.parse(sd.format(new Date()));
-                    } catch (ParseException ex) {
-                        ex.getMessage();
-                    }
                     long tiempoRestante = matricula.getIdImparticion().getFechaFin().getTime() - fechaActual.getTime();
                     tiempoRestante = tiempoRestante / 86400000;
-                   if (tiempoRestante<=5) {
-                    context.addMessage(null, new FacesMessage("Alerta", "Faltan menos de cinco días para el examen de "+matricula.getIdImparticion().getNombre()));
-                }
+                    if (tiempoRestante <= 5) {
+                        context.addMessage(null, new FacesMessage("Alerta", "Faltan menos de cinco días para el examen de " + matricula.getIdImparticion().getNombre()));
+                    }
                 }
                 ruta = "menuAlumno";
             }
@@ -71,6 +70,8 @@ public class Login {
         return ruta;
     }
 
+    
+    
     public String getUsuario() {
         return usuario;
     }
@@ -117,6 +118,22 @@ public class Login {
 
     public void setListaMatriculadas(List<Matricula> listaMatriculadas) {
         this.listaMatriculadas = listaMatriculadas;
+    }
+
+    public SimpleDateFormat getSd() {
+        return sd;
+    }
+
+    public void setSd(SimpleDateFormat sd) {
+        this.sd = sd;
+    }
+
+    public Date getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(Date fechaActual) {
+        this.fechaActual = fechaActual;
     }
 
 }

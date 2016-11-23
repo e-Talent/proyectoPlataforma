@@ -27,14 +27,10 @@ public class Contacto implements Serializable {
     @PostConstruct
     public void init() {
         simpleModel = new DefaultMapModel();
-
         //Shared coordinates
-        LatLng coord1 = new LatLng(37.869052,-4.181127);
-        
-
+        LatLng coord1 = new LatLng(37.869052, -4.181127);
         //Basic marker
         simpleModel.addOverlay(new Marker(coord1, "Konyaalti"));
- 
     }
 
     public MapModel getSimpleModel() {
