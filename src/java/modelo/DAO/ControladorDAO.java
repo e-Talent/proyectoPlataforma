@@ -115,13 +115,14 @@ public class ControladorDAO implements InterfazDAO {
         return resultado;
     }
 
-    @Override
+   
     /**
      * Método que utiliza la entidad impartición de la base de datos. Recupera
      * todas las imparticiones guardadas y comparando la fecha final de la
      * impartición con la actual los guarda en la lista de imparticiones activas
      * o no.
-     */
+     */ 
+    @Override
     public List<Imparticion> imparticionesActivas() {
         Query query = em.createNamedQuery("Imparticion.findAll");
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");

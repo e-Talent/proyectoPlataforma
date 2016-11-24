@@ -3,27 +3,27 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="templates/cabecera.xhtml" x="336" y="10" zoom="true"/>
-        <Node id="intro.xhtml" x="11" y="413" zoom="true"/>
-        <Node id="index.xhtml" x="186" y="411" zoom="true"/>
+        <Node id="intro.xhtml" x="20" y="161" zoom="true"/>
+        <Node id="index.xhtml" x="19" y="307" zoom="true"/>
         <Node id="menuAdmin.xhtml" x="419" y="667" zoom="true"/>
-        <Node id="templates/pieAlumno.xhtml" x="605" y="8" zoom="true"/>
         <Node id="imparticion.xhtml" x="666" y="660" zoom="true"/>
-        <Node id="examen.xhtml" x="692" y="247" zoom="true"/>
-        <Node id="crearExamen.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="templates/pieAlumno.xhtml" x="605" y="8" zoom="true"/>
+        <Node id="examen.xhtml" x="514" y="139" zoom="true"/>
         <Node id="bajaAlumno.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="templates/pie.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="crearExamen.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="templates/pie.xhtml" x="350" y="46" zoom="true"/>
         <Node id="altaCurso.xhtml" x="674" y="711" zoom="true"/>
-        <Node id="temario.xhtml" x="681" y="125" zoom="true"/>
+        <Node id="temario.xhtml" x="500" y="249" zoom="true"/>
         <Node id="templates/cabeceraAlumno.xhtml" x="25" y="12" zoom="true"/>
-        <Node id="nuestrosAutores.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="nuestrosAutores.xhtml" x="874" y="310" zoom="true"/>
         <Node id="mostrarCursos.xhtml" x="660" y="624" zoom="true"/>
+        <Node id="templates/plantillaExamen.xhtml" x="585" y="49" zoom="true"/>
         <Node id="contacto.xhtml" x="150" y="900" zoom="true"/>
-        <Node id="templates/plantillaExamen.xhtml" x="1150" y="300" zoom="true"/>
-        <Node id="templates/plantillaPrincipalAlumno.xhtml" x="900" y="450" zoom="true"/>
-        <Node id="templates/plantillaPrincipal.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="altaUsuario.xhtml" x="1150" y="150" zoom="true"/>
-        <Node id="matricularAlumnos.xhtml" x="135" y="361" zoom="true"/>
-        <Node id="menuAlumno.xhtml" x="414" y="163" zoom="true"/>
+        <Node id="templates/plantillaPrincipalAlumno.xhtml" x="875" y="7" zoom="true"/>
+        <Node id="templates/plantillaPrincipal.xhtml" x="884" y="44" zoom="true"/>
+        <Node id="altaUsuario.xhtml" x="872" y="210" zoom="true"/>
+        <Node id="menuAlumno.xhtml" x="244" y="208" zoom="true"/>
+        <Node id="matricularAlumnos.xhtml" x="462" y="372" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

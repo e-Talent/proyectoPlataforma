@@ -26,7 +26,7 @@
                             <f:selectItems value="#{imparticionesActivas.lista}" var="imparticion" itemLabel="#{imparticion.nombre}" itemValue="#{imparticion.idImparticion}"/>                        
                         </p:selectOneListbox>
                         <br/><br/> 
-                        <p:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" update="gMatricular"/>
+                        <p:commandButton value="Matricular" action="#{matricularAlumno.matricular()}" update="gMatricular" ajax="null"/>
                     </p:panel>
                     </center>
                 </h:form>

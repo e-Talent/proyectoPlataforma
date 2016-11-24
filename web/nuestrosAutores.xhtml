@@ -6,10 +6,10 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <p:panel>
+    <h:body style="background-color: #dddddd">
+        <p:panel style="background-color: #4d4d4d; background-image: none">
             <h:form enctype="multipart/form-data">
-                <p:fieldset legend="NUESTROS AUTORES" style="margin-bottom:20px">
+                <p:fieldset legend="NUESTROS AUTORES" style="margin-bottom:20px; background-color: #4d4d4d; background-image: none">
                     <h:panelGrid columns="4" cellpadding="10">
                         <p:graphicImage url="resources/nacho.jpg" width="150" />
                         <h:panelGrid>
@@ -44,7 +44,8 @@
                         </h:panelGrid>
                     </h:panelGrid>
                 </p:fieldset>
-            </h:form>
+                <p:commandButton value="Volver" action="intro"/>
+            </h:form>            
         </p:panel>
     </h:body>
 </html>

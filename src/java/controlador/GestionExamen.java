@@ -1,7 +1,10 @@
 package controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -27,6 +30,7 @@ public class GestionExamen {
     private double nota;
     private String dni;
     private boolean mostrarBoton;
+    private Imparticion imparticion;
 
     public GestionExamen() {
     }
@@ -74,6 +78,14 @@ public class GestionExamen {
         this.idImparticion = idImparticion;
         mostrarBoton = true;
         Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaActual = null;
+        imparticion = iDAO.buscarImparticionID(idImparticion);
+        try {
+            fechaActual = sd.parse(sd.format(new Date()));
+        } catch (ParseException ex) {
+            ex.getMessage();
+        }
         if (matricula.getNota() != null) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Examen ya realizado", "Su nota es: " + matricula.getNota()));
@@ -86,6 +98,10 @@ public class GestionExamen {
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage("Examen no disponible", "No existe examen disponible del curso: " + matricula.getIdImparticion().getNombre()));
                 return null;
+            } else if (imparticion.getFechaFin().compareTo(fechaActual) < 0) {
+               FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Examen no disponible","El curso "+imparticion.getNombre()+" ha finalizado." )); 
+              return null;  
             } else {
                 for (Examen p : preguntas) {
                     PreguntaExamen pe = new PreguntaExamen();
@@ -99,6 +115,8 @@ public class GestionExamen {
             }
         }
     }
+     
+          
 
     /**
      * Método que se encargará de recuperar el temario en .pdf y mostrarlo en
@@ -115,6 +133,7 @@ public class GestionExamen {
         return "temario";
     }
 
+       
     public List<Examen> getPreguntas() {
         return preguntas;
     }
@@ -177,6 +196,14 @@ public class GestionExamen {
 
     public void setMostrarBoton(boolean mostrarBoton) {
         this.mostrarBoton = mostrarBoton;
+    }
+
+    public Imparticion getImparticion() {
+        return imparticion;
+    }
+
+    public void setImparticion(Imparticion imparticion) {
+        this.imparticion = imparticion;
     }
 
 }

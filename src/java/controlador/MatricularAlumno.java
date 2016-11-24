@@ -41,8 +41,11 @@ public class MatricularAlumno {
             Imparticion i = iDAO.buscarImparticionID(idImparticion);
             m.setIdImparticion(i);
             iDAO.persist(m);
-            email.matricula(usuario.getEmail(),usuario.getNombre(),i.getNombre());
-            return "menuAdmin";
+            //email.matricula(usuario.getEmail(),usuario.getNombre(),i.getNombre());
+             FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Matricula correcta", usuario.getNombre()+" ha sio matriculado correctamente en "+i.getNombre()));
+            DNI=null;
+            return null;
         } else {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error", "El DNI introducido no se encuentra en la base de datos"));

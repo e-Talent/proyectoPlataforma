@@ -15,11 +15,11 @@
                 <h:form> 
                     <p:growl id="growlExamen" showDetail="true"/>
                     <center>
-                        <p:panel styleClass="panel">  
+                        <p:panel header="Examen de #{gestionExamen.imparticion.nombre}" styleClass="panel">  
                             <h:dataTable value="#{gestionExamen.preguntasExamen}" var="pe">
                                 <h:column>                   
                                     <p:panel header="#{pe.pregunta.enunciado}"> 
-                                        <p:selectOneRadio value="#{pe.valueRespuesta}" layout="grid" columns="4">
+                                        <p:selectOneRadio value="#{pe.valueRespuesta}" layout="grid" columns="1">
                                             <f:selectItems var="r" value="#{pe.respuestas}" itemValue="#{r.idRespuesta}" itemLabel="#{r.respuesta}"/>
                                         </p:selectOneRadio>
                                     </p:panel>
