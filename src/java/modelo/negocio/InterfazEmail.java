@@ -1,4 +1,4 @@
-package modelo.DAO;
+package modelo.negocio;
 
 /**
  * Interfaz en la que definimos las clases necesarias par el envío autmático de

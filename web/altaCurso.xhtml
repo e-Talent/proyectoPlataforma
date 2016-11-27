@@ -14,11 +14,13 @@
                 <h:form enctype="multipart/form-data">
                     <p:panel header="Alta de Curso" styleClass="panel">  
                         <br/>
-                        <h:panelGrid columns="2" cellpadding="5">   
-                            Nombre del curso:<p:inputText id="nombreCurso" value="#{agregarCurso.nombre}" required="true">
+                        <h:panelGrid columns="2" cellpadding="5">  
+                            <h:outputLabel value="Nombre del curso: " for="nombreCurso"/>
+                            <p:inputText id="nombreCurso" value="#{agregarCurso.nombre}" required="true">
                                 <f:validateLength minimum="3" maximum="45" />                           
-                            </p:inputText>                        
-                            Descripción:<p:inputTextarea id="descripcion" value="#{agregarCurso.descripcion}" required="true">
+                            </p:inputText>   
+                            <h:outputLabel value="Descripcion: " for="descripcion"/>
+                            <p:inputTextarea id="descripcion" value="#{agregarCurso.descripcion}" required="true">
                                 <f:validateLength minimum="3" maximum="45" /></p:inputTextarea>   
                             <p:growl id="messages" showDetail="true" />          
                         </h:panelGrid> 

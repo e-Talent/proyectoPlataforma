@@ -5,8 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import modelo.DAO.InterfazDAO;
-
+import modelo.DAO.InterfazMatricula;
 
 @ManagedBean
 @RequestScoped
@@ -15,8 +14,8 @@ import modelo.DAO.InterfazDAO;
  */
 public class ListadoAlumnos {
  
-@ManagedProperty("#{cDAO}")   
-private InterfazDAO iDAO; 
+@ManagedProperty("#{mDAO}")   
+private InterfazMatricula mDAO; 
 
 private List<Matricula> listaMatriculas = null;
     
@@ -28,7 +27,7 @@ private List<Matricula> listaMatriculas = null;
       * @return listadoPrueba
       */
      public String listarAlumnos() {  
-     listaMatriculas = iDAO.listarMatriculas();
+     listaMatriculas = mDAO.listarMatriculas();
      return "listadoPrueba";
      }
   
@@ -40,14 +39,13 @@ private List<Matricula> listaMatriculas = null;
         this.listaMatriculas = listaMatriculas;
     }
 
-    public InterfazDAO getiDAO() {
-        return iDAO;
+    public InterfazMatricula getmDAO() {
+        return mDAO;
     }
 
-    public void setiDAO(InterfazDAO iDAO) {
-        this.iDAO = iDAO;
+    public void setmDAO(InterfazMatricula mDAO) {
+        this.mDAO = mDAO;
     }
-
-
+   
     
 }

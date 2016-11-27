@@ -4,7 +4,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import modelo.DAO.InterfazDAO;
+import modelo.DAO.InterfazCurso;
 import persistencia.Curso;
 
 @ManagedBean
@@ -14,20 +14,35 @@ import persistencia.Curso;
  */
 public class ListaCursos {
 
-    @ManagedProperty("#{cDAO}")
-    private InterfazDAO iDAO;
+    @ManagedProperty("#{cuDAO}")
+    private InterfazCurso cDAO;
     private List<Curso> lista;
     private String nombre;
 
     public ListaCursos() {
     }
 
-    public InterfazDAO getiDAO() {
-        return iDAO;
+    /**
+     * Este método llama al método de la interfaz que se encargará de listar
+     * todos los cursos de la base de datos y nos devulve a "imparticion.xhtml"
+     *
+     * @return imparticion
+     */
+    public String listarCursos() {
+        lista = cDAO.listarCursos();
+        return "imparticion";
     }
 
-    public void setiDAO(InterfazDAO iDAO) {
-        this.iDAO = iDAO;
+    /**
+     * Este método llama al método de la interfaz que se encargará de listar
+     * todos los cursos de la base de datos en cuyo nombre exista el string
+     * pasado como parámetro y nos devuenve a "mostrarCursos.xhtml"
+     *
+     * @return mostrarCursos
+     */
+    public String buscador() {
+        lista = cDAO.listarCursosNombre(nombre);
+        return "mostrarCursos";
     }
 
     public List<Curso> getLista() {
@@ -46,27 +61,13 @@ public class ListaCursos {
         this.nombre = nombre;
     }
 
-    /**
-     * Este método llama al método de la interfaz que se encargará de listar
-     * todos los cursos de la base de datos y nos devulve a "imparticion.xhtml"
-     *
-     * @return imparticion
-     */
-    public String listarCursos() {
-        lista = iDAO.listarCursos();
-        return "imparticion";
+
+    public InterfazCurso getcDAO() {
+        return cDAO;
     }
 
-    /**
-     * Este método llama al método de la interfaz que se encargará de listar
-     * todos los cursos de la base de datos en cuyo nombre exista el string
-     * pasado como parámetro y nos devuenve a "mostrarCursos.xhtml"
-     *
-     * @return mostrarCursos
-     */
-    public String buscador() {
-        lista = iDAO.listarCursosNombre(nombre);
-        return "mostrarCursos";
+    public void setcDAO(InterfazCurso cDAO) {
+        this.cDAO = cDAO;
     }
 
 }

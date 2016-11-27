@@ -25,7 +25,7 @@ public class AgregarCurso {
     private String nombre;
     private String descripcion;
     private UploadedFile temario;
-    private String destination = "C:\\NeatBean\\proyectoPlataforma\\web\\resources\\";
+    private String destination = "D:\\Proyecto_Plataforma_new\\web\\resources\\";
 
     public AgregarCurso() {
     }

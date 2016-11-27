@@ -3,9 +3,8 @@ package controlador;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import modelo.DAO.InterfazDAO;
+import modelo.DAO.InterfazImparticion;
 import persistencia.Imparticion;
 
 @ManagedBean
@@ -16,8 +15,8 @@ import persistencia.Imparticion;
  */
 public class ImparticionesActivas {
 
-    @ManagedProperty("#{cDAO}")
-    private InterfazDAO iDAO;
+    @ManagedProperty("#{iDAO}")
+    private InterfazImparticion iDAO;
     private List<Imparticion> lista;
 
     public ImparticionesActivas() {
@@ -57,11 +56,11 @@ public class ImparticionesActivas {
         this.lista = lista;
     }
 
-    public InterfazDAO getiDAO() {
+    public InterfazImparticion getiDAO() {
         return iDAO;
     }
 
-    public void setiDAO(InterfazDAO iDAO) {
+    public void setiDAO(InterfazImparticion iDAO) {
         this.iDAO = iDAO;
     }
 

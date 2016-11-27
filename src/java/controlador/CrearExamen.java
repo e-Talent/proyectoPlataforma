@@ -3,7 +3,7 @@ package controlador;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import modelo.DAO.InterfazDAO;
+import modelo.DAO.InterfazExamen;
 
 @ManagedBean
 @RequestScoped
@@ -14,8 +14,8 @@ import modelo.DAO.InterfazDAO;
  */
 public class CrearExamen {
 
-    @ManagedProperty("#{cDAO}")
-    private InterfazDAO iDAO;
+    @ManagedProperty("#{eDAO}")
+    private InterfazExamen eDAO;
     private String textoRespuesta1;
     private String textoRespuesta2;
     private String textoRespuesta3;
@@ -84,12 +84,12 @@ public class CrearExamen {
         this.idImparticion = idImparticion;
     }
 
-    public InterfazDAO getiDAO() {
-        return iDAO;
+    public InterfazExamen geteDAO() {
+        return eDAO;
     }
 
-    public void setiDAO(InterfazDAO iDAO) {
-        this.iDAO = iDAO;
+    public void seteDAO(InterfazExamen eDAO) {
+        this.eDAO = eDAO;
     }
 
     /**
@@ -98,7 +98,7 @@ public class CrearExamen {
      * @return null
      */
     public String preguntaSiguiente() {
-    iDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);    
+    eDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);    
     textoRespuesta1=null;
     textoRespuesta2=null;
     textoRespuesta3=null;
@@ -111,7 +111,7 @@ public class CrearExamen {
      * @return menuAdmin
      */
     public String crearExamen() {
-        iDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);
+        eDAO.crearExamen(textoRespuesta1, textoRespuesta2, textoRespuesta3, textoRespuesta4, textoPregunta, respuestaCorrecta, idImparticion);
         return "menuAdmin";
     }
 

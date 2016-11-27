@@ -18,7 +18,7 @@
                           value="jdbc:mysql://localhost:3306/plataformadb">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="123456789"></property>
+        <property name="password" value=""></property>
     </bean>
     
     <bean id="entityFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -40,5 +40,5 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
                      
     <context:annotation-config/>
-    <context:component-scan base-package="modelo.DAO"/>
+    <context:component-scan base-package="modelo.DAO, modelo.negocio"/>
 </beans>

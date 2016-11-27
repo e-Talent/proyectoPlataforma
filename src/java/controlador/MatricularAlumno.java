@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import modelo.DAO.InterfazDAO;
-import modelo.DAO.InterfazEmail;
+import modelo.negocio.InterfazEmail;
 import persistencia.Imparticion;
 import persistencia.Matricula;
 import persistencia.Usuario;
@@ -41,7 +41,7 @@ public class MatricularAlumno {
             Imparticion i = iDAO.buscarImparticionID(idImparticion);
             m.setIdImparticion(i);
             iDAO.persist(m);
-            //email.matricula(usuario.getEmail(),usuario.getNombre(),i.getNombre());
+            email.matricula(usuario.getEmail(),usuario.getNombre(),i.getNombre());
              FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Matricula correcta", usuario.getNombre()+" ha sio matriculado correctamente en "+i.getNombre()));
             DNI=null;

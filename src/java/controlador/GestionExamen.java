@@ -11,7 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import modelo.DAO.InterfazDAO;
+import modelo.DAO.InterfazExamen;
+import modelo.DAO.InterfazImparticion;
+import modelo.DAO.InterfazMatricula;
 import persistencia.Examen;
 import persistencia.Imparticion;
 import persistencia.Matricula;
@@ -21,8 +23,12 @@ import persistencia.Pregunta;
 @SessionScoped
 public class GestionExamen {
 
-    @ManagedProperty("#{cDAO}")
-    private InterfazDAO iDAO;
+    @ManagedProperty("#{eDAO}")
+    private InterfazExamen eDAO;
+    @ManagedProperty("#{mDAO}")
+    private InterfazMatricula mDAO;
+    @ManagedProperty("#{iDAO}")
+    private InterfazImparticion iDAO;
     private List<Examen> preguntas;
     private List<PreguntaExamen> preguntasExamen;
     private int idImparticion;
@@ -56,7 +62,7 @@ public class GestionExamen {
             }
         }
         System.out.println(nota);
-        iDAO.ponerNota(dni, idImparticion, nota);
+        mDAO.ponerNota(dni, idImparticion, nota);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Examen realizado", "Su nota es: " + nota));
         mostrarBoton = false;
@@ -77,7 +83,7 @@ public class GestionExamen {
         this.dni = dni;
         this.idImparticion = idImparticion;
         mostrarBoton = true;
-        Matricula matricula = iDAO.buscarMatricula(dni, idImparticion);
+        Matricula matricula = mDAO.buscarMatricula(dni, idImparticion);
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaActual = null;
         imparticion = iDAO.buscarImparticionID(idImparticion);
@@ -93,15 +99,15 @@ public class GestionExamen {
             //En caso de que nota (nota=null)
         } else {
             preguntasExamen = new ArrayList<>();
-            preguntas = iDAO.cargarExamen(idImparticion);
+            preguntas = eDAO.cargarExamen(idImparticion);
             if (preguntas.isEmpty()) {
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage("Examen no disponible", "No existe examen disponible del curso: " + matricula.getIdImparticion().getNombre()));
                 return null;
             } else if (imparticion.getFechaFin().compareTo(fechaActual) < 0) {
-               FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Examen no disponible","El curso "+imparticion.getNombre()+" ha finalizado." )); 
-              return null;  
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Examen no disponible", "El curso " + imparticion.getNombre() + " ha finalizado."));
+                return null;
             } else {
                 for (Examen p : preguntas) {
                     PreguntaExamen pe = new PreguntaExamen();
@@ -115,8 +121,6 @@ public class GestionExamen {
             }
         }
     }
-     
-          
 
     /**
      * Método que se encargará de recuperar el temario en .pdf y mostrarlo en
@@ -133,7 +137,8 @@ public class GestionExamen {
         return "temario";
     }
 
-       
+    
+    
     public List<Examen> getPreguntas() {
         return preguntas;
     }
@@ -148,14 +153,6 @@ public class GestionExamen {
 
     public void setIdImparticion(int idImparticion) {
         this.idImparticion = idImparticion;
-    }
-
-    public InterfazDAO getiDAO() {
-        return iDAO;
-    }
-
-    public void setiDAO(InterfazDAO iDAO) {
-        this.iDAO = iDAO;
     }
 
     public String getUrlTemario() {
@@ -204,6 +201,30 @@ public class GestionExamen {
 
     public void setImparticion(Imparticion imparticion) {
         this.imparticion = imparticion;
+    }
+
+    public InterfazExamen geteDAO() {
+        return eDAO;
+    }
+
+    public void seteDAO(InterfazExamen eDAO) {
+        this.eDAO = eDAO;
+    }
+
+    public InterfazMatricula getmDAO() {
+        return mDAO;
+    }
+
+    public void setmDAO(InterfazMatricula mDAO) {
+        this.mDAO = mDAO;
+    }
+
+    public InterfazImparticion getiDAO() {
+        return iDAO;
+    }
+
+    public void setiDAO(InterfazImparticion iDAO) {
+        this.iDAO = iDAO;
     }
 
 }

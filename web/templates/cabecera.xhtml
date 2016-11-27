@@ -14,20 +14,21 @@
                 <h:form>
                     <p:menubar style="font: white">
                         <p:submenu label="Cursos">
-                            <p:menuitem value="Alta de cursos" action="altaCurso" ajax="false" icon="ui-icon-document"></p:menuitem>
-                            <p:menuitem value="Impartición de cursos" action="#{listaCursos.listarCursos()}" ajax="false" icon="ui-icon-calendar"></p:menuitem>
-                            <p:menuitem value="Crear Examen" action="crearExamen" ajax="false" icon="ui-icon-arrowreturnthick-1-w" ></p:menuitem>
+                            <p:menuitem value=" Alta de cursos" action="altaCurso" ajax="false" icon="ui-icon-document"></p:menuitem>
+                            <p:menuitem value=" Impartición de cursos" action="#{listaCursos.listarCursos()}" ajax="false" icon="ui-icon-calendar"></p:menuitem>
+                            <p:menuitem value=" Crear Examen" action="crearExamen" ajax="false" icon="ui-icon-pencil" ></p:menuitem>
                         </p:submenu>
                         <p:submenu label="Alumnos">
-                            <p:menuitem value="Matricular alumnos" action="#{imparticionesActivas.imparticionesActivas()}" ajax="false"  icon="ui-icon-bookmark"></p:menuitem>
-                            <p:menuitem value="Baja de alumnos" action="#{imparticionesActivas.darBajaAlumno()}" ajax="false" icon="ui-icon-trash"></p:menuitem> 
+                            <p:menuitem value=" Matricular alumnos" action="#{imparticionesActivas.imparticionesActivas()}" ajax="false"  icon="ui-icon-bookmark"></p:menuitem>
+                            <p:menuitem value=" Baja de alumnos" action="#{imparticionesActivas.darBajaAlumno()}" ajax="false" icon="ui-icon-trash"></p:menuitem> 
                         </p:submenu>
                         <p:submenu label="Usuarios">
-                            <p:menuitem value="Alta de usuarios" action="altaUsuario" ajax="false" icon="ui-icon-person"></p:menuitem>
+                            <p:menuitem value=" Alta de usuarios" action="altaUsuario" ajax="false" icon="ui-icon-person"></p:menuitem>
                         </p:submenu>
-                        <p:menuitem value="Salir" action="index" icon="ui-icon-close" />
+                        <p:menuitem value=" Salir" action="index" icon="ui-icon-extlink" />
                         <f:facet name="options">
-                            Cursos: <p:inputText value="#{listaCursos.nombre}"/> 
+                            <h:outputLabel value="Cursos: " for="buscarCursos"/>
+                            <p:inputText id="buscarCursos" value="#{listaCursos.nombre}"/> 
                             <p:commandButton value="Buscar" action="#{listaCursos.buscador()}"  icon="ui-icon-search"/>                            
                         </f:facet>
                     </p:menubar>

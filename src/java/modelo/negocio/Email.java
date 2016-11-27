@@ -1,4 +1,4 @@
-package modelo.DAO;
+package modelo.negocio;
 
 import java.util.Properties;
 
